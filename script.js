@@ -1,16 +1,59 @@
 
 const run = document.querySelector('.run');
-function writeIngedientList(ingredientsArray){
+
+function writeIngedientList(ingredientsArray) {
     const ingredientList = document.querySelector('.ingredients-list');
     const ingredientsHeader = document.querySelector('.ingredients-header');
     ingredientsHeader.textContent = 'Ingredients:';
-    for(let i = 0; i < ingredientsArray.length; i++){
+    for (let i = 0; i < ingredientsArray.length; i++) {
         const ingredient = document.createElement('li');
         ingredientList.append(ingredient);
         ingredient.textContent = `${ingredientsArray[i].original}`
 
     }
 }
+
+function writeInstructionList(instructionsArray) {
+    const instructionsList = document.querySelector('.instructions-list');
+    const instructionsHeader = document.querySelector('.instructions-header');
+    instructionsHeader.textContent = 'Instructions: ';
+    for (let i = 0; i < instructionsArray.length; i++) {
+        const instructionName = document.createElement('li');
+        instructionsList.append(instructionName);
+        //checks for empty instruction step name
+        if (instructionsArray[i].name === '') {
+            instructionName.textContent = `Step ${i + 1}`;
+        }
+        else {
+            instructionName.textContent = `${instructionsArray[i].name}`;
+        }
+        if (instructionsArray[i].steps.length > 0) {
+            const steps = document.createElement('ul');
+            instructionName.append(steps);
+            for (let stepNum = 0; stepNum < instructionsArray[i].steps.length; stepNum++) {
+                //checks for keywords that indicate photos
+                if (instructionsArray[i].steps[stepNum].step.includes('Simply') || instructionsArray[i].steps[stepNum].step.includes('Dotdash') ){ }
+                //check for Nutrition Facts being grouped into instructions
+                else if (instructionsArray[i].steps[stepNum].step.includes('Nutrition Facts')) { break }
+                else {
+                    const step = document.createElement('li');
+                    steps.append(step);
+                    step.innerHTML = instructionsArray[i].steps[stepNum].step;
+                }
+
+            }
+        }
+
+    }
+}
+
+function writeInstructions(instructions) {
+    const instructionsList = document.querySelector('.instructions-list');
+    const ingredientsHeader = document.querySelector('.instructions-header');
+    ingredientsHeader.textContent = 'Instructions:';
+    instructionsList.textContent = instructions;
+}
+
 run.addEventListener('click', () => {
     const options = {
         method: 'GET',
@@ -37,6 +80,7 @@ run.addEventListener('click', () => {
             }
             recipeImage.src = response.image;
             writeIngedientList(response.extendedIngredients);
+            writeInstructionList(response.analyzedInstructions);
 
         })
         .catch(err => title.textContent = err);

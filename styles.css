@@ -2,7 +2,9 @@ body, html{
     height: 100vh;
     width: 100%;
 }
-
+.title{
+    margin-bottom: 0px;
+}
 .recipe-content-container{
     display: flex;
     flex-direction: column;
@@ -19,4 +21,20 @@ body, html{
 
 .recipe-image{
     max-height: 600px;
+}
+
+.instructions-list{
+    white-space: pre-line;
+}
+
+.ingredients-instructions-container{
+    display: flex;
+    justify-content: center;
+}
+
+.ingredients-container, .instructions-container{
+    flex-basis: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
