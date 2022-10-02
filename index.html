@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="./styles.css">
     <title>Document</title>
 </head>
@@ -14,12 +15,13 @@
     <div class="input-container">
         <input type="text" class="recipe-input-url">
         <button class="run">Run</button>
+        <button class="save-pdf">Print/Save to PDF</button>
     </div>
 
-    <div class="recipe-content-container">
-        <h1 class="title"></h1>
+    <div class="recipe-content-container" id="root">
+        <h1 class="title">Welcome to the Automatic Recipe Formatter!</h1>
         <div class="ready-in-servings">
-            <p class="ready-in"></p>
+            <p class="ready-in">Paste the url of your recipe in the search box and click "Run" to get started!</p>
             <p class="servings"></p>
         </div>
         <img class="recipe-image">

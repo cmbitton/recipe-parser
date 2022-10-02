@@ -47,12 +47,12 @@ function writeInstructionList(instructionsArray) {
     }
 }
 
-function writeInstructions(instructions) {
+/*function writeInstructions(instructions) {
     const instructionsList = document.querySelector('.instructions-list');
     const ingredientsHeader = document.querySelector('.instructions-header');
     ingredientsHeader.textContent = 'Instructions:';
     instructionsList.textContent = instructions;
-}
+}*/
 
 run.addEventListener('click', () => {
     const options = {
@@ -67,6 +67,7 @@ run.addEventListener('click', () => {
     const recipeImage = document.querySelector('.recipe-image');
     const readyIn = document.querySelector('.ready-in');
     const servings = document.querySelector('.servings');
+    const infoMessage = document.querySelector('.ready-in-servings');
     fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?url=${input.value}`, options)
         .then(response => response.json())
         .then(response => {
@@ -74,6 +75,7 @@ run.addEventListener('click', () => {
             title.textContent = response.title;
             if (response.readyInMinutes !== -1) {
                 readyIn.textContent = `Ready In: ${Math.floor(response.readyInMinutes / 60)} hours and ${response.readyInMinutes % 60} Minutes`;
+                infoMessage.style.columnGap = '40px';
             }
             if (response.servings !== -1) {
                 servings.textContent = `Servings: ${response.servings}`;
@@ -85,3 +87,11 @@ run.addEventListener('click', () => {
         })
         .catch(err => title.textContent = err);
 })
+
+function saveToPDF(){
+    const saveButton = document.querySelector('.save-pdf');
+    saveButton.addEventListener('click', () => {
+        window.print();
+    })
+}
+saveToPDF();
