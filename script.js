@@ -46,13 +46,37 @@ function writeInstructionList(instructionsArray) {
 
     }
 }
-
-/*function writeInstructions(instructions) {
+// backup function in case regular instructions are missing
+function writeInstructions(instructions) {
     const instructionsList = document.querySelector('.instructions-list');
-    const ingredientsHeader = document.querySelector('.instructions-header');
-    ingredientsHeader.textContent = 'Instructions:';
-    instructionsList.textContent = instructions;
-}*/
+    instructionsList.remove();
+    const instructionsHeader = document.querySelector('.instructions-header');
+    instructionsHeader.textContent = 'Instructions:';
+    const instruction = document.createElement('p');
+    const instructionContainer = document.querySelector('.instructions-container');
+    instructionContainer.append(instruction);
+    instruction.textContent = instructions;
+
+}
+// script to replace image with a searched image if image not found
+function replaceImage(search, image){
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'aa46c0285emshc2e3dc0cac56061p159b49jsn22a03f2fdb16',
+            'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
+        }
+    };
+    const img = image;
+    const url = encodeURIComponent(search.trim())
+    fetch(`https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=${url}&pageNumber=1&pageSize=10&autoCorrect=true`, options)
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+            img.src = response.value[1].url;
+        })
+        .catch(err => console.error(err));
+}
 
 run.addEventListener('click', () => {
     const options = {
@@ -80,13 +104,26 @@ run.addEventListener('click', () => {
             if (response.servings !== -1) {
                 servings.textContent = `Servings: ${response.servings}`;
             }
+            //checks if image is available, if not runs search api and uses that image
+            if (response.image !== null){
             recipeImage.src = response.image;
+            }
+            else{
+                replaceImage(response.sourceUrl.slice(36, response.sourceUrl.indexOf('&')), recipeImage);
+            }
             writeIngedientList(response.extendedIngredients);
-            writeInstructionList(response.analyzedInstructions);
-
+            if(response.analyzedInstructions.length > 0){
+            writeInstructionList(response.analyzedInstructions);}
+            else{
+                writeInstructions(response.instructions);
+            }
         })
         .catch(err => title.textContent = err);
 })
+
+
+
+
 
 function saveToPDF(){
     const saveButton = document.querySelector('.save-pdf');
