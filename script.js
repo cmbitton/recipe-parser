@@ -77,7 +77,7 @@ function replaceImage(search, image){
         })
         .catch(err => console.error(err));
 }
-
+// run the program
 run.addEventListener('click', () => {
     const options = {
         method: 'GET',
@@ -109,7 +109,14 @@ run.addEventListener('click', () => {
             recipeImage.src = response.image;
             }
             else{
-                replaceImage(response.sourceUrl.slice(36, response.sourceUrl.indexOf('&')), recipeImage);
+                if(response.title = 'Search Page' || response,title = ''){
+                    replaceImage(response.sourceUrl.slice(36, response.sourceUrl.indexOf('&')), recipeImage);
+                    title.textContent = response.sourceUrl.slice(36, response.sourceUrl.indexOf('&'));
+                }
+                else{
+                    replaceImage(response.title, recipeImage);
+                }
+
             }
             writeIngedientList(response.extendedIngredients);
             if(response.analyzedInstructions.length > 0){
