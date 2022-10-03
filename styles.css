@@ -27,11 +27,14 @@ body, html{
 .instructions-list{
     white-space: pre-line;
     list-style: none;
+    margin-top: 0px;
+    padding-left: 20px;
 }
 
 .ingredients-instructions-container{
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .ingredients-container, .instructions-container{
@@ -55,7 +58,7 @@ body, html{
 .ingredients-list, .instructions-list ul{
     text-align: left;
 }
-.recipe-content-container *:hover {
+#hov *:hover {
     border: thin solid gray;
 
 }
@@ -66,15 +69,9 @@ body, html{
 }
 
 @media screen {
+    /*phone*/
     @media(max-width: 700px){
-        body{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .input-container{
-            width: 90%;
-        }
+
         .recipe-content-container{
             width: 90%;
         }
@@ -84,17 +81,55 @@ body, html{
         .ingredients-instructions-container{
             flex-direction: column;
         }
+
+        .run{
+            margin-left: 0px;
+            flex-basis: 60px;
+        }
         .instructions-list{
             padding-left: 0px;
         }
-        .instructions-list ul{
+        .ingredients-list{
+            margin-top: 0px;
+        }
+        .instructions-list ul, .ingredients-list{
             padding-left: 20px;
         }
         .ingredients-container, .instructions-container{
             flex-basis: auto;
+            align-items: flex-start;
         }
         .ready-in-servings{
             width: inherit;
         }
+        .instructions-header, .ingredients-header{
+            align-self: center;
+        }
+    }
+
+    /* tablet settings*/
+    @media (max-width: 1000px){
+        .input-container{
+            width: 90%;
+            flex-direction: column;
+            row-gap: 15px;
+        }
+        .buttons{
+            display: flex;
+            justify-content: center;
+            column-gap: 10px;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .recipe-input-url{
+            width: auto;
+        }
+        .ingredients-container, .instructions-container{
+            flex-basis: 350px;
+        }
+
     }
 }
