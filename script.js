@@ -109,12 +109,13 @@ run.addEventListener('click', () => {
             recipeImage.src = response.image;
             }
             else{
-                if(response.title = 'Search Page' || response,title = ''){
+                if(response.title === 'Search Page' || response.title === ''){
                     replaceImage(response.sourceUrl.slice(36, response.sourceUrl.indexOf('&')), recipeImage);
                     title.textContent = response.sourceUrl.slice(36, response.sourceUrl.indexOf('&'));
                 }
                 else{
                     replaceImage(response.title, recipeImage);
+
                 }
 
             }
