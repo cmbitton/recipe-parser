@@ -89,5 +89,8 @@ body, html{
         .ingredients-container, .instructions-container{
             flex-basis: auto;
         }
+        .ready-in-servings{
+            width: inherit;
+        }
     }
 }
