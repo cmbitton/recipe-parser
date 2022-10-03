@@ -21,7 +21,7 @@ body, html{
 }
 
 .recipe-image{
-    max-height: 500px;
+    max-height: 400px;
 }
 
 .instructions-list{
@@ -54,6 +54,10 @@ body, html{
 }
 .ingredients-list, .instructions-list ul{
     text-align: left;
+}
+.recipe-content-container *:hover {
+    border: thin solid gray;
+
 }
 @media print {
     .input-container{

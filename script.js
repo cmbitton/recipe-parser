@@ -22,10 +22,11 @@ function writeInstructionList(instructionsArray) {
         instructionsList.append(instructionName);
         //checks for empty instruction step name
         if (instructionsArray[i].name === '') {
-            instructionName.textContent = `Step ${i + 1}`;
+            instructionName.textContent = `Steps:`;
         }
         else {
             instructionName.textContent = `${instructionsArray[i].name}`;
+            instructionName.style.fontWeight = 'bold'
         }
         if (instructionsArray[i].steps.length > 0) {
             const steps = document.createElement('ul');
@@ -38,6 +39,7 @@ function writeInstructionList(instructionsArray) {
                 else {
                     const step = document.createElement('li');
                     steps.append(step);
+                    step.style.fontWeight = 'normal'
                     step.innerHTML = instructionsArray[i].steps[stepNum].step;
                 }
 
@@ -87,6 +89,8 @@ run.addEventListener('click', () => {
         }
     };
     const input = document.querySelector('.recipe-input-url');
+    const recipeContainer = document.querySelector('.recipe-content-container');
+    recipeContainer.setAttribute('contenteditable', 'true')
     const title = document.querySelector('.title');
     const recipeImage = document.querySelector('.recipe-image');
     const readyIn = document.querySelector('.ready-in');
