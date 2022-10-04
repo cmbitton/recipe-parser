@@ -173,6 +173,16 @@ function saveToPDF() {
         window.print();
     })
 }
+//save recipe to local storage
+function saveRecipe() {
+    const saveButton = document.querySelector('.save-recipe');
+    saveButton.addEventListener('click', () => {
+        const recipe = document.querySelector('.recipe-content-container');
+        const recipeTitle = document.querySelector('.title').textContent;
+        localStorage.setItem(`${recipeTitle}`, `${recipe.innerHTML}`);
+    })
+}
+saveRecipe();
 saveToPDF();
 editDocument();
 finishEditing();

@@ -65,6 +65,10 @@ body, html{
     border: thin solid gray;
 
 }
+.recipe-local-storage:hover{
+    color: blue;
+    cursor: pointer;
+}
 @media print {
     .input-container{
       display:none;
