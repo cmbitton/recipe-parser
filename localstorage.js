@@ -21,8 +21,10 @@ function createRecipeList() {
 
 document.addEventListener("click", function(event){
     const elm = event.target;
+    if(elm.classList.contains('recipe-local-storage')){
     const recipeContainer = document.querySelector('.recipe-content-container');
     recipeContainer.innerHTML = returnRecipe(elm.textContent);
+    }
    });
    
    
