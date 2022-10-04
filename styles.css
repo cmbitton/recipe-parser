@@ -214,6 +214,9 @@ body, html{
             display: none;
         }
         .nav-container{
+            padding: 10px;
+        }
+        .remove-recipe-container{
             padding: 20px 30px;
         }
     }
