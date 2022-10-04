@@ -65,10 +65,7 @@ body, html{
     border: thin solid gray;
 
 }
-.recipe-local-storage:hover{
-    color: blue;
-    cursor: pointer;
-}
+
 @media print {
     .input-container{
       display:none;
@@ -143,4 +140,20 @@ body, html{
             align-self: center;
         }
     }
+}
+
+
+/*recipe css*/
+.recipe-local-storage:hover{
+    color: blue;
+    cursor: pointer;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;}
+
+.remove-recipe-text-input{
+    width: 300px;
 }

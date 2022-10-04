@@ -124,12 +124,16 @@ run.addEventListener('click', () => {
 
                 }
                 writeIngedientList(response.extendedIngredients);
+                //checks for instructions, uses backup instructions if they are missing
                 if (response.analyzedInstructions.length > 0) {
                     writeInstructionList(response.analyzedInstructions);
                 }
                 else {
                     writeInstructions(response.instructions);
                 }
+                //moved function calls here so user can only edit/save recipes once one is loaded
+                editDocument();
+                saveRecipe();
 
             })
             .catch(() => {
@@ -179,10 +183,10 @@ function saveRecipe() {
     saveButton.addEventListener('click', () => {
         const recipe = document.querySelector('.recipe-content-container');
         const recipeTitle = document.querySelector('.title').textContent;
-        localStorage.setItem(`${recipeTitle}`, `${recipe.innerHTML}`);
+        localStorage.setItem(`${recipeTitle.toLowerCase()}`, `${recipe.innerHTML}`);
     })
 }
-saveRecipe();
+
 saveToPDF();
-editDocument();
+
 finishEditing();
