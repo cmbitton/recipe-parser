@@ -191,7 +191,7 @@ body, html{
 .remove-recipe-container{
     display: flex;
     justify-content: center;
-    padding: 20px 50px;
+    padding: 20px 40px;
     column-gap: 10px;
 
 }
