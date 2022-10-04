@@ -43,6 +43,7 @@ function createRecipeList() {
     }
 }
 
+//listens for clicks to the class recipe-local-storage (recipe list items)
 document.addEventListener("click", function(event){
     const elm = event.target;
     if(elm.classList.contains('recipe-local-storage')){
@@ -60,8 +61,13 @@ document.addEventListener("click", function(event){
     }
     console.log(recipeToRemove, recipeTitle)
    }
-   
+
+function printPDF() {
+    const printButton = document.querySelector('.print-pdf');
+    printButton.addEventListener('click', () => {
+        window.print();
+    })
+}
+printPDF();
 removeRecipe();
 createRecipeList();
-
-
