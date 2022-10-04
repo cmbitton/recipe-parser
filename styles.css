@@ -66,12 +66,6 @@ body, html{
 
 }
 
-@media print {
-    .input-container{
-      display:none;
-    }
-}
-
 @media screen {
     /*phone*/
 
@@ -232,4 +226,17 @@ body, html{
             width: 300px;
         }
 }
+}
+
+/*excludes heading in print */
+@media print {
+    .input-container{
+      display:none;
+    }
+    .nav-container{
+        display: none;
+    }
+    .recipes-list {
+        display: none;
+    }
 }
