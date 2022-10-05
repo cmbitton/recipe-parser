@@ -1,7 +1,5 @@
 
-function returnRecipe(name){
-        return localStorage.getItem(name);
-    }
+
 function removeRecipe(){
     const recipeTitle = document.querySelector('.recipe-title');
     const removeButton = document.querySelector('.remove-button');
@@ -21,36 +19,8 @@ function removeRecipe(){
     })
 
 }
-function getLocalStorageKeys(){
-    const keys = Object.keys(localStorage);
-      return keys;
-}
 
-function createRecipeList() {
-    const recipeList = getLocalStorageKeys();
-    const recipeOrderedList = document.querySelector('.recipes-list')
-    for (let i = 0; i < recipeList.length; i++) {
-        const recipeName = document.createElement('li');
-        recipeOrderedList.append(recipeName);
-        const titleList = recipeList[i].split(' ');
-        for(let j = 0; j < titleList.length; j++){
-            titleList[j] = titleList[j][0].toUpperCase() + titleList[j].substring(1);
-        }
-        console.log(titleList);
-        console.log(titleList.join(' '));
-        recipeName.textContent = titleList.join(' ');
-        recipeName.classList.add('recipe-local-storage');
-    }
-}
 
-//listens for clicks to the class recipe-local-storage (recipe list items)
-document.addEventListener("click", function(event){
-    const elm = event.target;
-    if(elm.classList.contains('recipe-local-storage')){
-    const recipeContainer = document.querySelector('.recipe-content-container');
-    recipeContainer.innerHTML = returnRecipe(elm.textContent.toLowerCase());
-    }
-   });
 
    function clearCurrentRecipe(recipeToRemove){
     const recipeContainer = document.querySelector('.recipe-content-container');

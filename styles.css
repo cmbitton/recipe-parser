@@ -192,6 +192,8 @@ body, html{
 .page-content{
     display: flex;
     padding: 0px 50px;
+    justify-content: center;
+    column-gap: 25px;
 }
 @media screen {
     @media(max-width: 1200px){
@@ -237,6 +239,9 @@ body, html{
         display: none;
     }
     .recipes-list {
+        display: none;
+    }
+    .right-container-recipes{
         display: none;
     }
 }

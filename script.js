@@ -1,9 +1,13 @@
 
 const run = document.querySelector('.run');
 
-function writeIngedientList(ingredientsArray) {
+function writeIngredientList(ingredientsArray) {
     const ingredientList = document.querySelector('.ingredients-list');
+    //erases text content in case page is not refreshed when running another recipe
+    ingredientList.textContent = '';
     const ingredientsHeader = document.querySelector('.ingredients-header');
+    //erases text content in case page is not refreshed when running another recipe
+    ingredientsHeader.textContent = '';
     ingredientsHeader.textContent = 'Ingredients:';
     for (let i = 0; i < ingredientsArray.length; i++) {
         const ingredient = document.createElement('li');
@@ -15,7 +19,10 @@ function writeIngedientList(ingredientsArray) {
 
 function writeInstructionList(instructionsArray) {
     const instructionsList = document.querySelector('.instructions-list');
+    //erases text content in case page is not refreshed when running another recipe
+    instructionsList.textContent = '';
     const instructionsHeader = document.querySelector('.instructions-header');
+    instructionsHeader.textContent = '';
     instructionsHeader.textContent = 'Instructions: ';
     for (let i = 0; i < instructionsArray.length; i++) {
         const instructionName = document.createElement('li');
@@ -75,7 +82,7 @@ function replaceImage(search, image) {
     fetch(`https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=${url}&pageNumber=1&pageSize=10&autoCorrect=true`, options)
         .then(response => response.json())
         .then(response => {
-            console.log(response);
+            //console.log(response);
             img.src = response.value[1].url;
         })
         .catch(err => console.error(err));
@@ -99,7 +106,7 @@ run.addEventListener('click', () => {
         fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?url=${input.value}`, options)
             .then(response => response.json())
             .then(response => {
-                console.log(response);
+                //console.log(response);
                 title.textContent = response.title;
                 if (response.readyInMinutes !== -1) {
                     readyIn.textContent = `Ready In: ${Math.floor(response.readyInMinutes / 60)} hours and ${response.readyInMinutes % 60} Minutes`;
@@ -123,7 +130,7 @@ run.addEventListener('click', () => {
                     }
 
                 }
-                writeIngedientList(response.extendedIngredients);
+                writeIngredientList(response.extendedIngredients);
                 //checks for instructions, uses backup instructions if they are missing
                 if (response.analyzedInstructions.length > 0) {
                     writeInstructionList(response.analyzedInstructions);
@@ -142,7 +149,9 @@ run.addEventListener('click', () => {
                 recipeImage.src = '';
                 infoMessage.textContent = '';
                 const ingredientsHeader = document.querySelector('.ingredients-header');
-                ingredientsHeader.textContent = ''
+                ingredientsHeader.textContent = '';
+                const instructionsContainer = document.querySelector('.instructions-container');
+                instructionsContainer.textContent = ''
             });
     }
 })
@@ -184,9 +193,92 @@ function saveRecipe() {
         const recipe = document.querySelector('.recipe-content-container');
         const recipeTitle = document.querySelector('.title').textContent;
         localStorage.setItem(`${recipeTitle.toLowerCase()}`, `${recipe.innerHTML}`);
+        const recipeOrderedList = document.querySelector('.recipes-list');
+        const recipeName = document.createElement('li');
+        recipeOrderedList.append(recipeName);
+        recipeName.classList.add('recipe-local-storage');
+        recipeName.textContent = recipeTitle;
+        createRecipeList();         
+        
     })
 }
+//get recipe list from local storage
+function getLocalStorageKeys(){
+    const keys = Object.keys(localStorage);
+      return keys;
+}
+//display recipe list on load
+function createRecipeList() {
+    const recipeList = getLocalStorageKeys();
+    const recipeOrderedList = document.querySelector('.recipes-list');
+    recipeOrderedList.textContent = '';
+    const recipeHeader = document.createElement('h2');
+    recipeHeader.classList.add('recipe-title')
+    recipeOrderedList.append(recipeHeader);
+    recipeHeader.textContent = 'Recipes';
+    for (let i = 0; i < recipeList.length; i++) {
+        const recipeName = document.createElement('li');
+        recipeOrderedList.append(recipeName);
+        const titleList = recipeList[i].split(' ');
+        for(let j = 0; j < titleList.length; j++){
+            titleList[j] = titleList[j][0].toUpperCase() + titleList[j].substring(1);
+        }
+        /* bug check
+        console.log(titleList);
+        console.log(titleList.join(' '));
+        */
+        recipeName.textContent = titleList.join(' ');
+        recipeName.classList.add('recipe-local-storage');
+    }
+}
+//clears page when user removes recipe while it is also on the page
+function clearCurrentRecipe(recipeToRemove){
+    const recipeContainer = document.querySelector('.recipe-content-container');
+    const recipeTitle = document.querySelector('.title').textContent;
+    //checks user input against recipe title on page and clears page if it matches the recipe to be deleted
+    if (recipeToRemove.toLowerCase() === recipeTitle.toLowerCase()){
+    recipeContainer.textContent = '';
+    const pageTitle = document.createElement('h1');
+    recipeContainer.append(pageTitle);
+    pageTitle.textContent = 'Recipe Removed'
+    }
+    //console.log(recipeToRemove, recipeTitle)
+   }
+//removes recipe from local storage and recipe list
+function removeRecipe(){
+    const recipeTitle = document.querySelector('.recipe-title');
+    const removeButton = document.querySelector('.remove-button');
+    removeButton.addEventListener('click', () => {
+        const recipe = document.querySelector('.recipe-input-url').value;
+        localStorage.removeItem(recipe.toLowerCase());
+        const children = document.querySelector('.recipes-list').children;
+        //loops through recipe list and removes recipe if it matches user input
+        for (let i = 0; i < children.length; i++) {
+            if(children[i].textContent.toLowerCase() === recipe.toLowerCase()){
+                children[i].remove();
+                clearCurrentRecipe(recipe);
+                return;
+            }}
+            return recipeTitle.textContent = 'ERROR, RECIPE NOT FOUND';
+    })
 
+}
+
+//listens for clicks to the class recipe-local-storage (recipe list items)
+function returnRecipe(name){
+    return localStorage.getItem(name);
+}
+document.addEventListener("click", function(event){
+    const elm = event.target;
+    if(elm.classList.contains('recipe-local-storage')){
+    const recipeContainer = document.querySelector('.recipe-content-container');
+    recipeContainer.innerHTML = returnRecipe(elm.textContent.toLowerCase());
+    //allows user to edit saved recipes
+    editDocument();
+    }
+   });
+
+createRecipeList();
 saveToPDF();
-
+removeRecipe();
 finishEditing();

@@ -10,38 +10,42 @@
     <title>ReciParser || Home</title>
 </head>
 
-<body>
+<body class="recipes-body">
     <div class="input-container">
         <input type="text" class="recipe-input-url">
         <div class="buttons">
-            <button class="run">Run</button>
+            <button class="run">Get Recipe</button>
             <button class="save-pdf">Print/Save to PDF</button>
             <button class="edit-doc">Edit Document</button>
             <button class="finish-editing">Finish Editing</button>
             <button class="save-recipe">Save Recipe</button>
-            <a href="./recipes.html">
-            <button class="recipes">Recipes</button>
-        </a>
+            <button class="remove-button">Remove Recipe</button>
         </div>
     </div>
 
-    <div class="recipe-content-container">
-        <h1 class="title">Welcome to ReciParser!</h1>
-        <div class="ready-in-servings">
-            <p class="ready-in">Paste the url of your recipe in the search box and click "Run" to get started!</p>
-            <p class="servings"></p>
-        </div>
-        <img class="recipe-image">
-        <div class="ingredients-instructions-container">
-            <div class="ingredients-container">
-                <h2 class="ingredients-header"></h2>
-                <ul class="ingredients-list"></ul>
+    <div class="page-content">
+        <ol class="recipes-list">
+            <h2 class="recipe-title">Recipes</h2>
+        </ol>
+        <div class="recipe-content-container">
+            <h1 class="title">Welcome to ReciParser!</h1>
+            <div class="ready-in-servings">
+                <p class="ready-in">Paste the url of your recipe in the search box and click "Run" to get started!</p>
+                <p class="servings"></p>
             </div>
-            <div class="instructions-container">
-                <h2 class="instructions-header"></h2>
-                <ol class="instructions-list"></ol>
+            <img class="recipe-image">
+            <div class="ingredients-instructions-container">
+                <div class="ingredients-container">
+                    <h2 class="ingredients-header"></h2>
+                    <ul class="ingredients-list"></ul>
+                </div>
+                <div class="instructions-container">
+                    <h2 class="instructions-header"></h2>
+                    <ol class="instructions-list"></ol>
+                </div>
             </div>
         </div>
+        <div class="right-container-recipes"></div>
     </div>
 
 </body>
