@@ -177,6 +177,8 @@ function finishEditing() {
             recipeContainer.setAttribute('contenteditable', 'false');
             recipeContainer.removeAttribute('id', 'hov');
         }
+        //Allows user to update recipe after editing
+        saveRecipe();
     })
 }
 
