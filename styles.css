@@ -12,6 +12,7 @@ body, html{
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 700px;
 }
 
 .ready-in-servings{
