@@ -246,10 +246,10 @@ function clearCurrentRecipe(recipeToRemove){
    }
 //removes recipe from local storage and recipe list
 function removeRecipe(){
-    const recipeTitle = document.querySelector('.recipe-title');
+    const recipeListTitle = document.querySelector('.recipe-title');
     const removeButton = document.querySelector('.remove-button');
     removeButton.addEventListener('click', () => {
-        const recipe = document.querySelector('.recipe-input-url').value;
+        const recipe = document.querySelector('.title').textContent;
         localStorage.removeItem(recipe.toLowerCase());
         const children = document.querySelector('.recipes-list').children;
         //loops through recipe list and removes recipe if it matches user input
@@ -259,7 +259,7 @@ function removeRecipe(){
                 clearCurrentRecipe(recipe);
                 return;
             }}
-            return recipeTitle.textContent = 'ERROR, RECIPE NOT FOUND';
+            return recipeListTitle.textContent = 'ERROR, RECIPE NOT FOUND';
     })
 
 }
