@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./script.js" defer></script>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <title>ReciParser || Home</title>
 </head>
 
@@ -14,10 +18,14 @@
     <div class="input-container">
         <input type="text" class="recipe-input-url">
         <div class="buttons">
-            <button class="run">Get Recipe From URL</button>
-            <button class="save-pdf">Print/PDF</button>
-            <button class="edit-doc">Edit Document</button>
-            <button class="finish-editing">Stop Editing</button>
+            <div class="run-save-button-container">
+                <button class="run">Get Recipe</button>
+                <button class="save-pdf">Print PDF</button>
+            </div>
+            <div class="edit-button-container">
+                <button class="edit-doc">Edit Document</button>
+                <button class="finish-editing">Stop Editing</button>
+            </div>
         </div>
     </div>
 
@@ -26,8 +34,10 @@
             <ol class="recipes-list">
                 <h2 class="recipe-title">Recipes</h2>
             </ol>
-            <button class="save-recipe">Save Current Recipe</button>
-            <button class="remove-button">Remove Current Recipe</button>
+            <div class="save-remove-container">
+                <button class="save-recipe">Save Current Recipe</button>
+                <button class="remove-button">Remove Current Recipe</button>
+            </div>
         </div>
         <div class="recipe-content-container">
             <h1 class="title">Welcome to ReciParser!</h1>
