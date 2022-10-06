@@ -276,6 +276,9 @@ function createBlankRecipe(){
     const instructions = document.querySelector('.instructions-list');
     const container = document.querySelector('.ingredients-instructions-container');
     const image = document.querySelector('.recipe-image');
+    //deletes image if one is already present
+    if(image.src !== null){
+        image.src = '';}
     //create image upload input and add class 'upload-image'
     const imageUpload = document.createElement('input');
     imageUpload.type = 'file';
@@ -289,9 +292,8 @@ function createBlankRecipe(){
     imageUpload.addEventListener("change", function() {
         const reader = new FileReader();
         reader.addEventListener("load", () => {
-            //deletes image if one is already present
-            if(image.src !== null){
-                image.src = '';}
+
+
           const uploaded_image = reader.result;
           console.log(uploaded_image);
           image.src = `${uploaded_image}`;
