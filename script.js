@@ -1,6 +1,6 @@
 
 const run = document.querySelector('.run');
-
+const templateButton = document.querySelector('.recipe-template')
 function writeIngredientList(ingredientsArray) {
     const ingredientList = document.querySelector('.ingredients-list');
     //erases text content in case page is not refreshed when running another recipe
@@ -265,7 +265,69 @@ function removeRecipe(){
     })
 
 }
+//creates a new, blank recipe template
+function createBlankRecipe(){
+    const recipeTitle = document.querySelector('.title');
+    const readyIn = document.querySelector('.ready-in');
+    const servings = document.querySelector('.servings');
+    document.querySelector('.ready-in-servings').style.columnGap = '40px';
+    const ingredientsHeader = document.querySelector('.ingredients-header');
+    const ingredients = document.querySelector('.ingredients-list');
+    const instructions = document.querySelector('.instructions-list');
+    const container = document.querySelector('.ingredients-instructions-container');
+    const image = document.querySelector('.recipe-image');
+    image.src = ''
+    image.style.maxHeight = '400px';
+    image.style.width = '400px';
+    image.style.height = '400px';
 
+    const imageUpload = document.createElement('input');
+    imageUpload.type = 'file';
+    imageUpload.accept= "image/png, image/jpeg";
+    imageUpload.classList.add('upload-image');
+    const recipeContainer = document.querySelector('.recipe-content-container');
+    if(document.querySelector('.upload-image') === null){
+    recipeContainer.insertBefore(imageUpload, container);}
+    imageUpload.addEventListener("change", function() {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          const uploaded_image = reader.result;
+          console.log(uploaded_image);
+          image.src = `${uploaded_image}`;
+          image.style.maxHeight = '400px';
+          image.style.width = 'auto';
+          image.style.maxWidth = '650px';
+        });
+        reader.readAsDataURL(this.files[0]);
+      });
+    ingredients.textContent = '';
+    instructions.textContent = '';
+    instructions.style.width = '90%'
+
+    for(let i =0; i < 5; i++){
+    const ingredient = document.createElement('li');
+    ingredients.append(ingredient);}
+    for(let i =0; i < 5; i++){
+        const instructionStep = document.createElement('li');
+        instructionStep.textContent = `Step ${i + 1}: `;
+        instructions.append(instructionStep);
+}
+
+    const instructionsHeader = document.querySelector('.instructions-header');
+    container.style.width = '90%';
+    recipeTitle.textContent = 'Recipe Title';
+    readyIn.textContent = 'Ready In: ';
+    servings.textContent = 'Servings: ';
+    ingredientsHeader.textContent = 'Ingredients: ';
+    instructionsHeader.textContent = 'Instructions';
+    ingredients.style.width = '90%';
+    instructions.style.width = '90%';
+    instructions.style.marginTop = '1em';
+    instructions.style.textAlign = 'left';
+    ingredients.style.textAlign = 'left';
+    editDocument();
+    saveRecipe();
+}
 //listens for clicks to the class recipe-local-storage (recipe list items)
 function returnRecipe(name){
     return localStorage.getItem(name);
@@ -280,6 +342,7 @@ document.addEventListener("click", function(event){
     }
    });
 
+templateButton.addEventListener('click', createBlankRecipe);
 createRecipeList();
 saveToPDF();
 removeRecipe();

@@ -64,12 +64,23 @@ body, html{
     border-radius: 25px;
     border: thin solid gray;
 }
+.save-remove-buttons {
+    display: flex;
+    column-gap: 10px;
+}
 .save-recipe, .remove-button{
     width: 150px;
     padding: 12px;
     margin-bottom: 10px;
     border-radius: 25px;
-    border: thin solid gray;
+    border: none;
+}
+.recipe-template{
+    width: 100%;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border: none;
 }
 button:hover {
 cursor: pointer;
@@ -291,7 +302,7 @@ button {
 
 /*excludes heading in print */
 @media print {
-    .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes{
+    .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, .recipe-template, .upload-image{
       display:none;
     }
 }
