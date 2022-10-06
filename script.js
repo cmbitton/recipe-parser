@@ -276,17 +276,22 @@ function createBlankRecipe(){
     const instructions = document.querySelector('.instructions-list');
     const container = document.querySelector('.ingredients-instructions-container');
     const image = document.querySelector('.recipe-image');
-    image.src = ''
+    //create image upload input and add class 'upload-image'
     const imageUpload = document.createElement('input');
     imageUpload.type = 'file';
     imageUpload.accept= "image/png, image/jpeg";
     imageUpload.classList.add('upload-image');
     const recipeContainer = document.querySelector('.recipe-content-container');
+    //check if image input element is already on screen, if it isn't then it adds it
     if(document.querySelector('.upload-image') === null){
     recipeContainer.insertBefore(imageUpload, container);}
+    //loads uploaded image into recipe image
     imageUpload.addEventListener("change", function() {
         const reader = new FileReader();
         reader.addEventListener("load", () => {
+            //deletes image if one is already present
+            if(image.src !== null){
+                image.src = '';}
           const uploaded_image = reader.result;
           console.log(uploaded_image);
           image.src = `${uploaded_image}`;
@@ -297,7 +302,7 @@ function createBlankRecipe(){
     ingredients.textContent = '';
     instructions.textContent = '';
     instructions.style.width = '90%'
-
+    //creates 5 empy list items for ingredients and instructions lists
     for(let i =0; i < 5; i++){
     const ingredient = document.createElement('li');
     ingredients.append(ingredient);}
@@ -319,6 +324,7 @@ function createBlankRecipe(){
     instructions.style.marginTop = '1em';
     instructions.style.textAlign = 'left';
     ingredients.style.textAlign = 'left';
+    //allows suer to edit and save template
     editDocument();
     saveRecipe();
 }
