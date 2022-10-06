@@ -277,10 +277,6 @@ function createBlankRecipe(){
     const container = document.querySelector('.ingredients-instructions-container');
     const image = document.querySelector('.recipe-image');
     image.src = ''
-    image.style.maxHeight = '400px';
-    image.style.width = '400px';
-    image.style.height = '400px';
-
     const imageUpload = document.createElement('input');
     imageUpload.type = 'file';
     imageUpload.accept= "image/png, image/jpeg";
@@ -294,9 +290,7 @@ function createBlankRecipe(){
           const uploaded_image = reader.result;
           console.log(uploaded_image);
           image.src = `${uploaded_image}`;
-          image.style.maxHeight = '400px';
-          image.style.width = 'auto';
-          image.style.maxWidth = '650px';
+
         });
         reader.readAsDataURL(this.files[0]);
       });
