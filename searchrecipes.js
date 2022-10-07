@@ -7,7 +7,7 @@ function showSearchedRecipe(recipe){
     recipeContent.insertBefore(returnToSearch, title);
     returnToSearch.classList.add('return-to-search')
     returnToSearch.textContent = 'Return to Search';
-    returnToSearch.addEventListener('click', () => {displaySearchList()})
+    returnToSearch.addEventListener('click', () => {createsearchList(JSON.parse(localStorage.getItem('apiresponse')).results, 10)})
     const recipeImage = document.querySelector('.recipe-image');
     const readyIn = document.querySelector('.ready-in');
     const servings = document.querySelector('.servings');
@@ -95,7 +95,7 @@ function saveSearchList(){
 function saveSearchRecipes(recipeList){
     localStorage.setItem('Search Recipes', JSON.stringify(recipeList));
 }
-
+/*
 function displaySearchList(){
     const searchList = localStorage.getItem('Search Results');
     const recipeContainer = document.querySelector('.recipe-content-container');
@@ -120,7 +120,7 @@ function addEventListenerToSearchResults() {
     })
 
 }
-
+*/
 function runSearch(){
     const recipeSearchButton = document.querySelector('.recipe-search-button');
     recipeSearchButton.addEventListener('click', () => {    
