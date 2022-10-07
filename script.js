@@ -193,6 +193,10 @@ function saveToPDF() {
 function saveRecipe() {
     const saveButton = document.querySelector('.save-recipe');
     saveButton.addEventListener('click', () => {
+        //hides 'return to search' link
+        if(document.querySelector('.return-to-search')){
+            document.querySelector('.return-to-search').style.display = 'none';
+        }
         const recipe = document.querySelector('.recipe-content-container');
         const recipeTitle = document.querySelector('.title').textContent;
         localStorage.setItem(`${recipeTitle.toLowerCase()}`, `${recipe.innerHTML}`);
@@ -202,9 +206,13 @@ function saveRecipe() {
         recipeOrderedList.append(recipeName);
         recipeName.classList.add('recipe-local-storage');
         recipeName.textContent = recipeTitle;
-        createRecipeList();         
-        
+        createRecipeList();
+        //shows 'return to search' link         
+        document.querySelector('.return-to-search').style.display = 'inline';
     })
+
+
+    
 }
 //get recipe list from local storage
 function getLocalStorageKeys(){

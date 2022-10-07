@@ -199,7 +199,7 @@ button {
 }
 /*excludes heading in print */
 @media print {
-    .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, .recipe-template, .upload-image{
+    .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, .recipe-template, .upload-image, .return-to-search{
       display:none;
     }
 }

@@ -4,6 +4,7 @@ function showSearchedRecipe(recipe){
     const returnToSearch = document.createElement('a');
     const recipeContent = document.querySelector('.recipe-content-container');
     recipeContent.insertBefore(returnToSearch, title);
+    returnToSearch.classList.add('return-to-search')
     returnToSearch.textContent = 'Return to Search';
     returnToSearch.addEventListener('click', () => {displaySearchList()})
     const recipeImage = document.querySelector('.recipe-image');
