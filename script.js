@@ -327,7 +327,7 @@ function createBlankRecipe(){
     instructions.style.marginTop = '1em';
     instructions.style.textAlign = 'left';
     ingredients.style.textAlign = 'left';
-    //allows suer to edit and save template
+    //allows user to edit and save template
     editDocument();
     saveRecipe();
 }

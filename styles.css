@@ -186,54 +186,7 @@ button {
     column-gap: 25px;
     margin-top: 25px;
 }
-@media screen {
-    @media(max-width: 1350px){
-        .page-content{
-            flex-direction: column;
-            align-items: center;
-            padding: 0px;
-        }
-        body{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
 
-        .recipes-list{
-            flex-basis: auto;
-            width: 300px;
-        }
-        .right-container-recipes{
-            display: none;
-        }
-        .nav-container{
-            padding: 10px;
-        }
-        .remove-recipe-container{
-            padding: 20px 30px;
-        }
-        .input-container{
-            width: 90%;
-            flex-direction: column;
-            row-gap: 15px;
-        }
-        .recipe-input-url{
-            width: 90%;
-        }
-    }
-    @media(max-width: 800px){
-        .nav-container{
-            flex-direction: column;
-            padding: 20px;
-
-        }
-    
-        .remove-recipe-container{
-            padding: 15px 0px;
-            width: 300px;
-        }
-}
-}
 /*CSS for recipe search features*/
 .recipe-container{
     display: flex;
@@ -242,6 +195,7 @@ button {
     column-gap: 15px;
     margin: 10px 0px;
     width: 650px;
+    align-items: center;
 }
 /*excludes heading in print */
 @media print {
@@ -251,8 +205,43 @@ button {
 }
 
 @media screen {
-    /*phone*/
+    @media screen {
+        @media(max-width: 1350px){
+            .page-content{
+                flex-direction: column;
+                align-items: center;
+                padding: 0px;
+            }
+            body{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            .recipes-list{
+                flex-basis: auto;
+                width: 300px;
+            }
+            .right-container-recipes{
+                display: none;
+            }
+            .nav-container{
+                padding: 10px;
+            }
+            .remove-recipe-container{
+                padding: 20px 30px;
+            }
+            .input-container{
+                width: 90%;
+                flex-direction: column;
+                row-gap: 15px;
+            }
+            .recipe-input-url{
+                width: 90%;
+            }
+        }
 
+    
 
     /* tablet settings*/
     @media (max-width: 1000px){
@@ -268,6 +257,19 @@ button {
             width: 90%;
         }
     }
+    @media(max-width: 800px){
+        .nav-container{
+            flex-direction: column;
+            padding: 20px;
+
+        }
+    
+        .remove-recipe-container{
+            padding: 15px 0px;
+            width: 300px;
+        }
+}
+        /*phone*/
     @media(max-width: 700px){
 
         .recipe-image{
@@ -321,4 +323,5 @@ button {
             width: 50%;
         }
     }
+}
 }
