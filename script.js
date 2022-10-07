@@ -221,6 +221,8 @@ function createRecipeList() {
     recipeOrderedList.append(recipeHeader);
     recipeHeader.textContent = 'Recipes';
     for (let i = 0; i < recipeList.length; i++) {
+        //check local storage to make sure search results and search recipes are not included in recipe list
+        if(recipeList[i] !== 'Search Results' && recipeList[i] !== 'Search Recipes'){
         const recipeName = document.createElement('li');
         recipeOrderedList.append(recipeName);
         const titleList = recipeList[i].split(' ');
@@ -234,6 +236,7 @@ function createRecipeList() {
         recipeName.textContent = titleList.join(' ');
         recipeName.classList.add('recipe-local-storage');
     }
+}
 }
 //clears page when user removes recipe while it is also on the page
 function clearCurrentRecipe(recipeToRemove){
