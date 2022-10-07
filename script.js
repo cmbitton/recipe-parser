@@ -207,8 +207,9 @@ function saveRecipe() {
         recipeName.classList.add('recipe-local-storage');
         recipeName.textContent = recipeTitle;
         createRecipeList();
-        //shows 'return to search' link         
-        document.querySelector('.return-to-search').style.display = 'inline';
+        //shows 'return to search' link
+        if(document.querySelector('.return-to-search').style.display = 'none')       {  
+        document.querySelector('.return-to-search').style.display = 'inline';}
     })
 
 
