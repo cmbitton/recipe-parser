@@ -231,7 +231,7 @@ function createRecipeList() {
     recipeHeader.textContent = 'Recipes';
     for (let i = 0; i < recipeList.length; i++) {
         //check local storage to make sure search results and search recipes are not included in recipe list
-        if(recipeList[i] !== 'Search Results' && recipeList[i] !== 'Search Recipes'){
+        if(recipeList[i] !== 'Search Results' && recipeList[i] !== 'Search Recipes' && recipeList[i] !== 'apiresponse'){
         const recipeName = document.createElement('li');
         recipeOrderedList.append(recipeName);
         const titleList = recipeList[i].split(' ');

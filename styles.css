@@ -192,10 +192,34 @@ button {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    column-gap: 15px;
+    text-align: left;
+    column-gap: 25px;
     margin: 10px 0px;
     width: 650px;
     align-items: center;
+    transition: all 100ms ease-in-out;
+}
+.recipe-container:hover{
+    filter: drop-shadow(0 0 5px gray);
+    border: none;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+.return-to-search{
+    color: blue;
+    margin-top: 22px;
+}
+.return-to-search:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+.show-more-recipes{
+    color: blue;
+    margin-bottom: 25px;
+}
+.show-more-recipes:hover{
+    cursor: pointer;
+    transform: scale(1.05);
 }
 /*excludes heading in print */
 @media print {

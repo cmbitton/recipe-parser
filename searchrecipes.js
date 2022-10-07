@@ -1,3 +1,4 @@
+
 function showSearchedRecipe(recipe){
     buildRecipePageContent();
     const title = document.querySelector('.title');
@@ -53,13 +54,13 @@ function showSearchedRecipe(recipe){
             
     
 
-function createsearchList(recipeList){
+function createsearchList(recipeList, resultsAmount){
     const listResultsContainer = document.querySelector('.recipe-content-container');
     listResultsContainer.textContent = '';
     const resultsHeader = document.createElement('h1');
     listResultsContainer.append(resultsHeader);
     resultsHeader.textContent = 'Results';
-    for(let i = 0; i < 10; i ++){
+    for(let i = 0; i < resultsAmount; i ++){
         const recipeContainer = document.createElement('div');
         recipeContainer.classList.add('recipe-container');
         const recipeName = document.createElement('h3');
@@ -70,13 +71,21 @@ function createsearchList(recipeList){
         recipeName.textContent = recipeList[i].title;
         recipeImage.src = recipeList[i].image;
         recipeImage.classList.add('recipe-search-image');
-        //save search list to local storage so user can return to page
-
         recipeContainer.addEventListener('click', () => {
             showSearchedRecipe(recipeList[i]);
         });
     }
+    const showMoreRecipesButton = document.createElement('p');
+    showMoreRecipesButton.textContent = 'Load More';
+    showMoreRecipesButton.classList.add('show-more-recipes')
+    listResultsContainer.append(showMoreRecipesButton);
+    showMoreRecipesButton.addEventListener('click', () =>{
+        resultsAmount += 5;
+        createsearchList(recipeList, resultsAmount);
+    } )
+    //saves recipe list html to local storage to display when user returns to search
     saveSearchList();
+    //saves recipe html to local storage for adding event listeners back when user returns to search
     saveSearchRecipes(recipeList);
 }
 function saveSearchList(){
@@ -104,11 +113,15 @@ function addEventListenerToSearchResults() {
             showSearchedRecipe(recipeFormated[i]);
         })
     }
+    const showMoreRecipesButton = document.querySelector('.show-more-recipes');
+    showMoreRecipesButton.addEventListener('click', () => {
+        const numOfResults = results.length;
+        createsearchList(JSON.parse(localStorage.getItem('apiresponse')).results, numOfResults)
+    })
 
 }
 
 function runSearch(){
-    localStorage.removeItem('Search Results');
     const recipeSearchButton = document.querySelector('.recipe-search-button');
     recipeSearchButton.addEventListener('click', () => {    
         const options = {
@@ -119,11 +132,11 @@ function runSearch(){
         }
     };
     const searchQuery = document.querySelector('.recipe-search').value;
-
-    fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&ignorePantry=true&sort=popularity&sortDirection=desc&limitLicense=false&ranking=2`, options)
+    fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&sort=popularity&sortDirection=desc&number=200&limitLicense=false&ranking=2`, options)
         .then(response => response.json())
         .then(response => {console.log(response);
-            createsearchList(response.results);
+            localStorage.setItem('apiresponse', JSON.stringify(response));
+            createsearchList(response.results, 10);
         })
         .catch(err => console.error(err));})
 
@@ -178,4 +191,5 @@ function buildRecipePageContent(){
     instructionsList.classList.add('instructions-list');
 
 }
+
 runSearch();
