@@ -120,6 +120,7 @@ run.addEventListener('click', () => {
                     recipeImage.src = response.image;
                 }
                 else {
+                    //common problem with recipes from food network. possible fix would be to use different scraper
                     if (response.title === 'Search Page' || response.title === '') {
                         replaceImage(response.sourceUrl.slice(36, response.sourceUrl.indexOf('&')), recipeImage);
                         title.textContent = response.sourceUrl.slice(36, response.sourceUrl.indexOf('&'));

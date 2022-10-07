@@ -116,71 +116,6 @@ button {
 }
 
 
-@media screen {
-    /*phone*/
-
-
-    /* tablet settings*/
-    @media (max-width: 1000px){
-
-        .recipe-image{
-            max-width: 650px;
-        }
-        .ingredients-container, .instructions-container{
-            flex-basis: 350px;
-        }
-
-        .recipe-content-container{
-            width: 90%;
-        }
-    }
-    @media(max-width: 700px){
-
-        .recipe-image{
-            width: inherit;
-        }
-        .ingredients-instructions-container{
-            flex-direction: column;
-        }
-
-        .run{
-            margin-left: 0px;
-            flex-basis: 60px;
-        }
-        .run-save-button-container {
-            width: 100%;
-        }
-        .instructions-list{
-            padding-left: 0px;
-        }
-        .ingredients-list{
-            margin-top: 0px;
-        }
-        .instructions-list ul, .ingredients-list{
-            padding-left: 20px;
-        }
-        .ingredients-container, .instructions-container{
-            flex-basis: auto;
-            align-items: flex-start;
-        }
-        .ready-in-servings{
-            width: inherit;
-        }
-        .instructions-header, .ingredients-header{
-            align-self: center;
-        }
-        .buttons{
-            flex-direction: column;
-            row-gap: 6px;
-        }
-        button {
-            width: 140px;
-        }
-        .run, .save-pdf, .edit-doc, .finish-editing {
-            padding: 15px 10px;
-        }
-    }
-}
 
 
 /*recipe css*/
@@ -299,10 +234,91 @@ button {
         }
 }
 }
-
+/*CSS for recipe search features*/
+.recipe-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    column-gap: 15px;
+    margin: 10px 0px;
+    width: 650px;
+}
 /*excludes heading in print */
 @media print {
     .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, .recipe-template, .upload-image{
       display:none;
+    }
+}
+
+@media screen {
+    /*phone*/
+
+
+    /* tablet settings*/
+    @media (max-width: 1000px){
+
+        .recipe-image{
+            max-width: 650px;
+        }
+        .ingredients-container, .instructions-container{
+            flex-basis: 350px;
+        }
+
+        .recipe-content-container{
+            width: 90%;
+        }
+    }
+    @media(max-width: 700px){
+
+        .recipe-image{
+            width: inherit;
+        }
+        .ingredients-instructions-container{
+            flex-direction: column;
+        }
+
+        .run{
+            margin-left: 0px;
+            flex-basis: 60px;
+        }
+        .run-save-button-container {
+            width: 100%;
+        }
+        .instructions-list{
+            padding-left: 0px;
+        }
+        .ingredients-list{
+            margin-top: 0px;
+        }
+        .instructions-list ul, .ingredients-list{
+            padding-left: 20px;
+        }
+        .ingredients-container, .instructions-container{
+            flex-basis: auto;
+            align-items: flex-start;
+        }
+        .ready-in-servings{
+            width: inherit;
+        }
+        .instructions-header, .ingredients-header{
+            align-self: center;
+        }
+        .buttons{
+            flex-direction: column;
+            row-gap: 6px;
+        }
+        button {
+            width: 140px;
+        }
+        .run, .save-pdf, .edit-doc, .finish-editing {
+            padding: 15px 10px;
+        }
+        /*recipe search*/
+        .recipe-container{
+            width: 90%;
+        }
+        .recipe-search-image{
+            width: 50%;
+        }
     }
 }
