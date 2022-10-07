@@ -1,6 +1,11 @@
 function showSearchedRecipe(recipe){
     buildRecipePageContent();
     const title = document.querySelector('.title');
+    const returnToSearch = document.createElement('a');
+    const recipeContent = document.querySelector('.recipe-content-container');
+    recipeContent.insertBefore(returnToSearch, title);
+    returnToSearch.textContent = 'Return to Search';
+    returnToSearch.addEventListener('click', () => {displaySearchList()})
     const recipeImage = document.querySelector('.recipe-image');
     const readyIn = document.querySelector('.ready-in');
     const servings = document.querySelector('.servings');
@@ -64,13 +69,45 @@ function createsearchList(recipeList){
         recipeName.textContent = recipeList[i].title;
         recipeImage.src = recipeList[i].image;
         recipeImage.classList.add('recipe-search-image');
+        //save search list to local storage so user can return to page
+
         recipeContainer.addEventListener('click', () => {
             showSearchedRecipe(recipeList[i]);
         });
     }
+    saveSearchList();
+    saveSearchRecipes(recipeList);
+}
+function saveSearchList(){
+    const recipe = document.querySelector('.recipe-content-container');
+    localStorage.setItem('Search Results', `${recipe.innerHTML}`);
+}
+function saveSearchRecipes(recipeList){
+    localStorage.setItem('Search Recipes', JSON.stringify(recipeList));
+}
+
+function displaySearchList(){
+    const searchList = localStorage.getItem('Search Results');
+    const recipeContainer = document.querySelector('.recipe-content-container');
+    recipeContainer.textContent = '';
+    recipeContainer.innerHTML = searchList;
+    addEventListenerToSearchResults();
+}
+function addEventListenerToSearchResults() {
+    const results = document.querySelectorAll('.recipe-container');
+    for (let i = 0; i < results.length; i++) {
+        results[i].addEventListener('click', () => {
+            const recipe = localStorage.getItem('Search Recipes');
+            const recipeFormated = JSON.parse(recipe);
+            console.log(recipeFormated);
+            showSearchedRecipe(recipeFormated[i]);
+        })
+    }
+
 }
 
 function runSearch(){
+    localStorage.removeItem('Search Results');
     const recipeSearchButton = document.querySelector('.recipe-search-button');
     recipeSearchButton.addEventListener('click', () => {    
         const options = {
@@ -90,6 +127,7 @@ function runSearch(){
         .catch(err => console.error(err));})
 
 }
+
 
 
 function buildRecipePageContent(){

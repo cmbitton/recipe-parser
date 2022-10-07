@@ -196,6 +196,7 @@ function saveRecipe() {
         const recipe = document.querySelector('.recipe-content-container');
         const recipeTitle = document.querySelector('.title').textContent;
         localStorage.setItem(`${recipeTitle.toLowerCase()}`, `${recipe.innerHTML}`);
+        //updates saved recipe list to include saved recipe
         const recipeOrderedList = document.querySelector('.recipes-list');
         const recipeName = document.createElement('li');
         recipeOrderedList.append(recipeName);
