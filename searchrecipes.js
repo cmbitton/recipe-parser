@@ -122,7 +122,7 @@ function addEventListenerToSearchResults() {
 }
 */
 function runSearch(){
-    const recipeSearchButton = document.querySelector('.recipe-search-button');
+    const recipeSearchButton = document.querySelector('.run');
     recipeSearchButton.addEventListener('click', () => {    
         const options = {
         method: 'GET',
@@ -131,7 +131,9 @@ function runSearch(){
             'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
         }
     };
-    const searchQuery = document.querySelector('.recipe-search').value;
+    const searchQuery = document.querySelector('.recipe-input-url').value;
+    //does not call api if input is a link. instead uses other api
+    if(searchQuery.includes('http')) return
     fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&sort=popularity&sortDirection=desc&number=200&limitLicense=false&ranking=2`, options)
         .then(response => response.json())
         .then(response => {console.log(response);

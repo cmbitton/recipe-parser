@@ -1,4 +1,3 @@
-
 const run = document.querySelector('.run');
 const templateButton = document.querySelector('.recipe-template')
 function writeIngredientList(ingredientsArray) {
@@ -97,12 +96,14 @@ run.addEventListener('click', () => {
         }
     };
     const input = document.querySelector('.recipe-input-url');
+    buildRecipePageContent();
+
     const title = document.querySelector('.title');
     const recipeImage = document.querySelector('.recipe-image');
     const readyIn = document.querySelector('.ready-in');
     const servings = document.querySelector('.servings');
     const infoMessage = document.querySelector('.ready-in-servings');
-    if (input.value !== '') {
+    if (input.value !== '' && input.value.includes('http')) {
         fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?url=${input.value}`, options)
             .then(response => response.json())
             .then(response => {
@@ -145,14 +146,16 @@ run.addEventListener('click', () => {
 
             })
             .catch(() => {
-                //adds error message and removes all text if no recipe found
+                //adds error message and removes all text if no recipe found. Also makes sure input is url and not recipe search
+            if (input.value.includes('http')){
                 title.textContent = 'ERROR FINDING RECIPE';
                 recipeImage.src = '';
                 infoMessage.textContent = '';
                 const ingredientsHeader = document.querySelector('.ingredients-header');
                 ingredientsHeader.textContent = '';
                 const instructionsContainer = document.querySelector('.instructions-container');
-                instructionsContainer.textContent = ''
+                instructionsContainer.textContent = '';
+            }
             });
     }
 })
@@ -194,22 +197,19 @@ function saveRecipe() {
     const saveButton = document.querySelector('.save-recipe');
     saveButton.addEventListener('click', () => {
         //hides 'return to search' link
-        if(document.querySelector('.return-to-search')){
+        const isSearchRecipe = (document.querySelector('.return-to-search') && document.querySelector('.return-to-search').style.display !== 'none');
+        if(isSearchRecipe){
             document.querySelector('.return-to-search').style.display = 'none';
         }
         const recipe = document.querySelector('.recipe-content-container');
         const recipeTitle = document.querySelector('.title').textContent;
         localStorage.setItem(`${recipeTitle.toLowerCase()}`, `${recipe.innerHTML}`);
         //updates saved recipe list to include saved recipe
-        const recipeOrderedList = document.querySelector('.recipes-list');
-        const recipeName = document.createElement('li');
-        recipeOrderedList.append(recipeName);
-        recipeName.classList.add('recipe-local-storage');
-        recipeName.textContent = recipeTitle;
         createRecipeList();
         //shows 'return to search' link
-        if(document.querySelector('.return-to-search').style.display = 'none')       {  
-        document.querySelector('.return-to-search').style.display = 'inline';}
+        if(isSearchRecipe){  
+        document.querySelector('.return-to-search').style.display = 'flex';
+        }
     })
 
 
@@ -235,14 +235,11 @@ function createRecipeList() {
         const recipeName = document.createElement('li');
         recipeOrderedList.append(recipeName);
         const titleList = recipeList[i].split(' ');
-        for(let j = 0; j < titleList.length; j++){
-            titleList[j] = titleList[j][0].toUpperCase() + titleList[j].substring(1);
-        }
         /* bug check
         console.log(titleList);
         console.log(titleList.join(' '));
         */
-        recipeName.textContent = titleList.join(' ');
+        recipeName.textContent = recipeList[i];
         recipeName.classList.add('recipe-local-storage');
     }
 }
@@ -281,6 +278,7 @@ function removeRecipe(){
 }
 //creates a new, blank recipe template
 function createBlankRecipe(){
+    buildRecipePageContent();
     const recipeTitle = document.querySelector('.title');
     const readyIn = document.querySelector('.ready-in');
     const servings = document.querySelector('.servings');

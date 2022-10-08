@@ -54,6 +54,7 @@ body, html{
     align-items: center;
     column-gap: 5px;
     margin-top: 20px;
+    margin-left: 15px;
 }
 /*buttons*/
 .run{
@@ -64,11 +65,11 @@ body, html{
     border-radius: 25px;
     border: thin solid gray;
 }
-.save-remove-buttons {
+.save-remove-buttons, .edit-button-container {
     display: flex;
     column-gap: 10px;
 }
-.save-recipe, .remove-button{
+.save-recipe, .remove-button, .edit-doc, .finish-editing{
     width: 150px;
     padding: 12px;
     margin-bottom: 10px;
@@ -259,6 +260,7 @@ button {
                 width: 90%;
                 flex-direction: column;
                 row-gap: 15px;
+                margin-left: 0px;
             }
             .recipe-input-url{
                 width: 90%;
