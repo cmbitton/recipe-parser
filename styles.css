@@ -54,7 +54,7 @@ body, html{
     align-items: center;
     column-gap: 5px;
     margin-top: 20px;
-    margin-left: 15px;
+    margin-left: 325px;
 }
 /*buttons*/
 .run{
@@ -63,7 +63,12 @@ body, html{
 .run, .save-pdf, .edit-doc, .finish-editing{
     padding: 10px;
     border-radius: 25px;
-    border: thin solid gray;
+    border: none;
+    width: 150px;
+}
+.run-save-button-container{
+    display: flex;
+    column-gap: 10px;
 }
 .save-remove-buttons, .edit-button-container {
     display: flex;
@@ -265,6 +270,16 @@ button {
             .recipe-input-url{
                 width: 90%;
             }
+            .run, .save-pdf, .edit-doc, .finish-editing {
+                padding: 15px 10px;
+            }
+            .run{
+                margin-left: 0px;
+            }
+            .left-sidebar{
+                flex-direction: row;
+                column-gap: 10px;
+            }
         }
 
     
@@ -282,6 +297,7 @@ button {
         .recipe-content-container{
             width: 90%;
         }
+
     }
     @media(max-width: 800px){
         .nav-container{
@@ -304,11 +320,11 @@ button {
         .ingredients-instructions-container{
             flex-direction: column;
         }
-
-        .run{
-            margin-left: 0px;
-            flex-basis: 60px;
+        .left-sidebar{
+            flex-direction: column;
+            column-gap: 0px;
         }
+
         .run-save-button-container {
             width: 100%;
         }
@@ -338,9 +354,7 @@ button {
         button {
             width: 140px;
         }
-        .run, .save-pdf, .edit-doc, .finish-editing {
-            padding: 15px 10px;
-        }
+
         /*recipe search*/
         .recipe-container{
             width: 90%;
