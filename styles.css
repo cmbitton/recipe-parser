@@ -204,7 +204,7 @@ button {
 .recipes-list{
     border: thin solid gray;
     flex-basis: auto;
-    width: 100%;
+    width: 350px;
     flex-shrink: 0;
     padding: 20px;
     margin-top: 0px;
