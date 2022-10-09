@@ -16,7 +16,7 @@ body, html{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 1000px;
+    width: 100%;
 }
 
 .ready-in-servings{
@@ -57,7 +57,7 @@ body, html{
     align-items: center;
     column-gap: 5px;
     padding: 20px 0px;
-    padding-left: 360px;
+    padding-left: 325px;
     background-color: #004E89;
 }
 .save-remove-container{
@@ -65,13 +65,32 @@ body, html{
     background-color: #9b9b9b;
     border-radius: 15px;
 }
-.tools-header{
+.tools-header, .search-settings-heading{
     text-align: center;
     font-size: 24px;
     margin-top: 0px;
     color: rgb(0, 0, 0);
     letter-spacing: 1px;
 }
+
+.search-settings-heading, .search-subheading{
+    color: white;
+}
+.search-subheading{
+    margin: 12px 0px;
+    letter-spacing: 1px;
+}
+.rank-search, .asc-desc{
+    border-radius: 5px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+label {
+    color: white;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
 /*buttons*/
 .run{
     margin-left: 10px;
@@ -173,29 +192,21 @@ button {
     color: blue;
     cursor: pointer;
 }
-.home-button{
-    width: 194px;
-}
-.right-container-heading{
-    display: flex;
-    column-gap: 10px;
-}
+
 .left-sidebar{
     display: flex;
     flex-direction: column;
     align-items: center;
 
 }
-.nav-container{
-    display: flex;
-    justify-content: center;
-    padding: 20px 50px;
-    align-items: center;
-}
 
 .right-container-recipes{
-    flex-basis: 300px;
+    flex-basis: 350px;
     flex-shrink: 0;
+    background-color: #004E89;
+    border-radius: 15px;
+    padding: 20px;
+    height: fit-content;
 }
 
 .remove-recipe-text-input{
@@ -233,7 +244,7 @@ button {
 }
 .page-content{
     display: flex;
-    padding: 0px 50px;
+    padding: 0px 35px;
     justify-content: center;
     column-gap: 25px;
     margin-top: 25px;

@@ -63,6 +63,39 @@
             </div>
         </div>
         <div class="right-container-recipes">
+            <h4 class="search-settings-heading">Search Settings</h4>
+            <div class="rank-by-container">
+                <h4 class="search-subheading">Rank By:</h4>
+                <select name="rank-search" id="rank-by" class="rank-search">
+                    <option value="popularity">Popularity</option>
+                    <option value="meta-score">Meta-Score</option>
+                    <option value="healthiness">Healthiness</option>
+                    <option value="calories">Calories</option>
+                    <option value="price">Price</option>
+                    <option value="time">Time</option>
+                    <option value="carbohydrates">Carbohydrates</option> 
+                    <option value="total-fat">Total-Fat</option>
+                    <option value="protein">Protein</option>
+                </select>
+                <select name="asc-desc" class="asc-desc">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+            <div class="diet-container">
+                <h4 class="search-subheading">Diet:</h4>
+                <input type="checkbox" name="diet" value="vegetarian" id="vegetarian" class="diet">
+                <label for="vegetarian">Vegetarian</label>
+                <br>
+                <input type="checkbox" name="diet" value="vegan" id="vegan" class="diet">
+                <label for="vegan">Vegan</label>
+                <br>
+                <input type="checkbox" name="diet" value="paleo" id="paleo" class="diet">
+                <label for="paleo">Paleo</label>
+                <br>
+                <input type="checkbox" name="diet" value="primal" id="primal" class="diet">
+                <label for="primal">Primal</label>
+            </div>
         </div>
     </div>
 

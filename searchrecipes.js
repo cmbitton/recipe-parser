@@ -60,7 +60,9 @@ function createsearchList(recipeList, resultsAmount){
     const resultsHeader = document.createElement('h1');
     listResultsContainer.append(resultsHeader);
     resultsHeader.textContent = 'Results';
+    //if end of recipe list, exit function
     for(let i = 0; i < resultsAmount; i ++){
+        if(!recipeList[i]) return
         const recipeContainer = document.createElement('div');
         recipeContainer.classList.add('recipe-container');
         const recipeName = document.createElement('h3');
@@ -121,6 +123,16 @@ function addEventListenerToSearchResults() {
 
 }
 */
+function getDietsAsUrl(){
+    const dietChoices = document.querySelectorAll('.diet');
+    const dietList = [];
+    for(let i = 0; i < dietChoices.length; i++){
+        if (dietChoices[i].checked){
+            dietList.push(dietChoices[i].value);
+        }
+    }
+    return dietList.join();
+}
 function runSearch(){
     const recipeSearchButton = document.querySelector('.run');
     recipeSearchButton.addEventListener('click', () => {    
@@ -134,7 +146,11 @@ function runSearch(){
     const searchQuery = document.querySelector('.recipe-input-url').value;
     //does not call api if input is a link. instead uses other api
     if(searchQuery.includes('http')) return
-    fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&sort=popularity&sortDirection=desc&number=200&limitLicense=false&ranking=2`, options)
+    const sortMethod = document.querySelector('.rank-search').value;
+    const sortDirection = document.querySelector('.asc-desc').value;
+    const diet = encodeURIComponent(getDietsAsUrl());
+    console.log(diet);
+    fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&diet=${diet}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&sort=${sortMethod}&sortDirection=${sortDirection}&number=200&limitLicense=false&ranking=2`, options)
         .then(response => response.json())
         .then(response => {console.log(response);
             localStorage.setItem('apiresponse', JSON.stringify(response));
