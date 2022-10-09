@@ -90,6 +90,11 @@ label {
     font-size: 16px;
     letter-spacing: 1px;
 }
+.allergies-checkbox-container{
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 60px;
+}
 
 /*buttons*/
 .run{

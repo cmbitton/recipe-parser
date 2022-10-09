@@ -133,6 +133,16 @@ function getDietsAsUrl(){
     }
     return dietList.join();
 }
+function getAllergiesAsUrl(){
+    const allergyChoices = document.querySelectorAll('.allergies');
+    const allergyList = [];
+    for(let i = 0; i < allergyChoices.length; i++){
+        if (allergyChoices[i].checked){
+            allergyList.push(allergyChoices[i].value);
+        }
+    }
+    return allergyList.join();
+}
 function runSearch(){
     const recipeSearchButton = document.querySelector('.run');
     recipeSearchButton.addEventListener('click', () => {    
@@ -149,8 +159,9 @@ function runSearch(){
     const sortMethod = document.querySelector('.rank-search').value;
     const sortDirection = document.querySelector('.asc-desc').value;
     const diet = encodeURIComponent(getDietsAsUrl());
+    const allergies = encodeURIComponent(getAllergiesAsUrl());
     console.log(diet);
-    fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&diet=${diet}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&sort=${sortMethod}&sortDirection=${sortDirection}&number=200&limitLicense=false&ranking=2`, options)
+    fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&diet=${diet}&intolerances=${allergies}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&sort=${sortMethod}&sortDirection=${sortDirection}&number=200&limitLicense=false&ranking=2`, options)
         .then(response => response.json())
         .then(response => {console.log(response);
             localStorage.setItem('apiresponse', JSON.stringify(response));
