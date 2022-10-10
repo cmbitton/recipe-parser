@@ -73,7 +73,7 @@ body, html{
     letter-spacing: 1px;
 }
 
-.show-hide-toggle-tools{
+.show-hide-toggle-tools, .show-hide-toggle-settings{
     margin-top: 8px;
     margin-right: 5px;
     font-weight: bold;
@@ -298,6 +298,10 @@ button {
     cursor: pointer;
     transform: scale(1.05);
 }
+input[type='checkbox']{
+    height: 15px;
+    width: 15px;
+}
 /*excludes heading in print */
 @media print {
     .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, .recipe-template, .upload-image, .return-to-search, .edit-button-container, .tools-header, .left-sidebar{
@@ -309,7 +313,7 @@ button {
     @media screen {
         @media(max-width: 1350px){
             .page-content{
-                flex-direction: column;
+                flex-direction: column-reverse;
                 align-items: center;
                 padding: 0px;
             }
@@ -324,8 +328,28 @@ button {
                 align-self: flex-start;
             }
             .right-container-recipes{
-                display: none;
+                flex-basis: 75px;
+                height: 200px;
+                order: 2;
+                width: 710px;
+                margin-bottom: 10px;
             }
+            .search-settings-heading-container{
+                text-align: center;
+            }
+            .search-settings-heading{
+                margin-bottom: 0px;
+            }
+            .rank-by-container{
+                display: flex;
+                flex-direction: column;
+                row-gap: 3px;
+            }
+            .search-settings-content{
+                display: flex;
+                justify-content: space-between;
+            }
+
             .nav-container{
                 padding: 10px;
             }
@@ -350,6 +374,7 @@ button {
             .left-sidebar{
                 flex-direction: row;
                 column-gap: 10px;
+                order: 1;
             }
         }
 
@@ -384,6 +409,9 @@ button {
 }
         /*phone*/
     @media(max-width: 700px){
+        .page-content{
+            margin-top: 10px;
+        }
 
         .recipe-image{
             width: inherit;
@@ -392,19 +420,35 @@ button {
             flex-direction: column;
         }
         .left-sidebar{
-            flex-direction: column;
-            column-gap: 0px;
+            flex-direction: column-reverse;
+            row-gap: 10px;
         }
-
+        button:hover{
+            transform: none;
+        }
         .run-save-button-container {
             width: 100%;
         }
-        .tools-container{
+        .right-container-recipes{
+            height: 75px;
+            width: 350px;
+        }
+        .recipes-list{
+            margin-bottom: 0px;
+        }
+
+        .tools-container, .search-settings-heading-container{
             display: flex;
             column-gap: 76px;
             justify-content: flex-end;
         }
-        .show-hide-toggle-tools{
+        .search-settings-heading-container{
+            column-gap: 10px;
+        }
+        .rank-by-container{
+            width: 150px;
+        }
+        .show-hide-toggle-tools, .show-hide-toggle-settings{
             display: inline;
             cursor: pointer;
             letter-spacing: 1px;
@@ -416,7 +460,7 @@ button {
             height: 75px;
             width: 100%;
         }
-        .edit-button-container, .save-remove-buttons, .recipe-template{
+        .edit-button-container, .save-remove-buttons, .recipe-template, .search-settings-content{
             display: none;
         }
         .instructions-list{

@@ -28,6 +28,7 @@
     </div>
 
     <div class="page-content">
+
         <div class="left-sidebar">
             <ol class="recipes-list">
                 <h2 class="recipe-title">Recipes</h2>
@@ -66,68 +67,74 @@
                 </div>
             </div>
         </div>
+
         <div class="right-container-recipes">
-            <h4 class="search-settings-heading">Search Settings</h4>
-            <div class="rank-by-container">
-                <h4 class="search-subheading">Rank By:</h4>
-                <select name="rank-search" id="rank-by" class="rank-search">
-                    <option value="popularity">Popularity</option>
-                    <option value="meta-score">Meta-Score</option>
-                    <option value="healthiness">Healthiness</option>
-                    <option value="calories">Calories</option>
-                    <option value="price">Price</option>
-                    <option value="time">Time</option>
-                    <option value="carbohydrates">Carbohydrates</option>
-                    <option value="total-fat">Total-Fat</option>
-                    <option value="protein">Protein</option>
-                </select>
-                <select name="asc-desc" class="asc-desc">
-                    <option value="desc">Descending</option>
-                    <option value="asc">Ascending</option>
-                </select>
+            <div class="search-settings-heading-container">
+                <h4 class="search-settings-heading">Search Settings</h4>
+                <p class="show-hide-toggle-settings">Show</p>
             </div>
-            <div class="diet-container">
-                <h4 class="search-subheading">Diet:</h4>
-                <input type="checkbox" name="diet" value="vegetarian" id="vegetarian" class="diet">
-                <label for="vegetarian">Vegetarian</label>
-                <br>
-                <input type="checkbox" name="diet" value="vegan" id="vegan" class="diet">
-                <label for="vegan">Vegan</label>
-                <br>
-                <input type="checkbox" name="diet" value="paleo" id="paleo" class="diet">
-                <label for="paleo">Paleo</label>
-                <br>
-                <input type="checkbox" name="diet" value="primal" id="primal" class="diet">
-                <label for="primal">Primal</label>
-            </div>
-            <div class="allergies-container">
-                <h4 class="search-subheading">Allergies:</h4>
-                <div class="allergies-checkbox-container">
-                    <div class="allergies-left-container">
-                        <input type="checkbox" name="allergies" value="dairy" id="dairy" class="allergies">
-                        <label for="dairy">Dairy</label>
-                        <br>
-                        <input type="checkbox" name="allergies" value="egg" id="egg" class="allergies">
-                        <label for="egg">Egg</label>
-                        <br>
-                        <input type="checkbox" name="allergies" value="gluten" id="gluten" class="allergies">
-                        <label for="gluten">Gluten</label>
-                        <br>
-                        <input type="checkbox" name="allergies" value="peanut" id="peanut" class="allergies">
-                        <label for="peanut">Peanut</label>
-                    </div>
-                    <div class="allergies-right-container">
-                        <input type="checkbox" name="allergies" value="soy" id="soy" class="allergies">
-                        <label for="soy">Soy</label>
-                        <br>
-                        <input type="checkbox" name="allergies" value="shellfish" id="shellfish" class="allergies">
-                        <label for="shellfish">Shellfish</label>
-                        <br>
-                        <input type="checkbox" name="allergies" value="tree nut" id="tree nut" class="allergies">
-                        <label for="tree nut">Tree Nut</label>
-                        <br>
-                        <input type="checkbox" name="allergies" value="wheat" id="wheat" class="allergies">
-                        <label for="wheat">Wheat</label>
+            <div class="search-settings-content">
+                <div class="rank-by-container">
+                    <h4 class="search-subheading">Rank By:</h4>
+                    <select name="rank-search" id="rank-by" class="rank-search">
+                        <option value="popularity">Popularity</option>
+                        <option value="meta-score">Meta-Score</option>
+                        <option value="healthiness">Healthiness</option>
+                        <option value="calories">Calories</option>
+                        <option value="price">Price</option>
+                        <option value="time">Time</option>
+                        <option value="carbohydrates">Carbohydrates</option>
+                        <option value="total-fat">Total-Fat</option>
+                        <option value="protein">Protein</option>
+                    </select>
+                    <select name="asc-desc" class="asc-desc">
+                        <option value="desc">Descending</option>
+                        <option value="asc">Ascending</option>
+                    </select>
+                </div>
+                <div class="diet-container">
+                    <h4 class="search-subheading">Diet:</h4>
+                    <input type="checkbox" name="diet" value="vegetarian" id="vegetarian" class="diet">
+                    <label for="vegetarian">Vegetarian</label>
+                    <br>
+                    <input type="checkbox" name="diet" value="vegan" id="vegan" class="diet">
+                    <label for="vegan">Vegan</label>
+                    <br>
+                    <input type="checkbox" name="diet" value="paleo" id="paleo" class="diet">
+                    <label for="paleo">Paleo</label>
+                    <br>
+                    <input type="checkbox" name="diet" value="primal" id="primal" class="diet">
+                    <label for="primal">Primal</label>
+                </div>
+                <div class="allergies-container">
+                    <h4 class="search-subheading">Allergies:</h4>
+                    <div class="allergies-checkbox-container">
+                        <div class="allergies-left-container">
+                            <input type="checkbox" name="allergies" value="dairy" id="dairy" class="allergies">
+                            <label for="dairy">Dairy</label>
+                            <br>
+                            <input type="checkbox" name="allergies" value="egg" id="egg" class="allergies">
+                            <label for="egg">Egg</label>
+                            <br>
+                            <input type="checkbox" name="allergies" value="gluten" id="gluten" class="allergies">
+                            <label for="gluten">Gluten</label>
+                            <br>
+                            <input type="checkbox" name="allergies" value="peanut" id="peanut" class="allergies">
+                            <label for="peanut">Peanut</label>
+                        </div>
+                        <div class="allergies-right-container">
+                            <input type="checkbox" name="allergies" value="soy" id="soy" class="allergies">
+                            <label for="soy">Soy</label>
+                            <br>
+                            <input type="checkbox" name="allergies" value="shellfish" id="shellfish" class="allergies">
+                            <label for="shellfish">Shellfish</label>
+                            <br>
+                            <input type="checkbox" name="allergies" value="tree nut" id="tree nut" class="allergies">
+                            <label for="tree nut">Tree Nut</label>
+                            <br>
+                            <input type="checkbox" name="allergies" value="wheat" id="wheat" class="allergies">
+                            <label for="wheat">Wheat</label>
+                        </div>
                     </div>
                 </div>
             </div>

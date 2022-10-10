@@ -21,4 +21,23 @@ function showHideTools(){
         }
     })
 }
+
+function showHideSettings(){
+    const showHideButton = document.querySelector('.show-hide-toggle-settings');
+    const searchbox = document.querySelector('.right-container-recipes');
+    const content = document.querySelector('.search-settings-content');
+    showHideButton.addEventListener('click', () => {
+        if (showHideButton.textContent === 'Show'){
+            content.style.display = 'block';
+            searchbox.style.height = 'fit-content';
+            showHideButton.textContent = 'Hide';
+        }
+        else{
+            content.removeAttribute('style');
+            searchbox.removeAttribute('style');
+            showHideButton.textContent = 'Show';
+        }
+    })
+}
+showHideSettings();
 showHideTools();
