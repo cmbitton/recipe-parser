@@ -407,6 +407,9 @@ button {
         .show-hide-toggle-tools{
             display: inline;
             cursor: pointer;
+            letter-spacing: 1px;
+            text-decoration: underline;
+            text-underline-offset: 2px;
         }
         .save-remove-container{
             height: 75px;
