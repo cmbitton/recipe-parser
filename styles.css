@@ -73,6 +73,15 @@ body, html{
     letter-spacing: 1px;
 }
 
+.show-hide-toggle-tools{
+    margin-top: 9px;
+    margin-right: 5px;
+    font-weight: bold;
+    color: black;
+    width: 40px;
+    display: none;
+}
+
 .search-settings-heading, .search-subheading{
     color: white;
 }
@@ -389,6 +398,22 @@ button {
 
         .run-save-button-container {
             width: 100%;
+        }
+        .tools-container{
+            display: flex;
+            column-gap: 76px;
+            justify-content: flex-end;
+        }
+        .show-hide-toggle-tools{
+            display: inline;
+            cursor: pointer;
+        }
+        .save-remove-container{
+            height: 75px;
+            width: 100%;
+        }
+        .edit-button-container, .save-remove-buttons, .recipe-template{
+            display: none;
         }
         .instructions-list{
             padding-left: 0px;
