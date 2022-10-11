@@ -28,13 +28,13 @@ function showHideSettings(){
     const content = document.querySelector('.search-settings-content');
     showHideButton.addEventListener('click', () => {
         if (showHideButton.textContent === 'Show'){
-            content.style.display = 'block';
-            searchbox.style.height = 'fit-content';
+            content.classList.add('expand');
+            searchbox.classList.add('expand');
             showHideButton.textContent = 'Hide';
         }
         else{
-            content.removeAttribute('style');
-            searchbox.removeAttribute('style');
+            content.classList.remove('expand');
+            searchbox.classList.remove('expand');
             showHideButton.textContent = 'Show';
         }
     })

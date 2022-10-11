@@ -433,6 +433,7 @@ input[type='checkbox']{
             height: 75px;
             width: 350px;
         }
+
         .recipes-list{
             margin-bottom: 0px;
         }
@@ -462,6 +463,10 @@ input[type='checkbox']{
         }
         .edit-button-container, .save-remove-buttons, .recipe-template, .search-settings-content{
             display: none;
+        }
+        .expand{
+            display: block;
+            height: fit-content;
         }
         .instructions-list{
             padding-left: 0px;
