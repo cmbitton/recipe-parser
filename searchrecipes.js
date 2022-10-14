@@ -50,8 +50,17 @@ function showSearchedRecipe(recipe){
                 saveRecipe();
 
             }
+function doubleCheckDiets(recipe) {
+    const diets = getDietsAsUrl().split(',');
+    if (diets.length > 0) {
+        for (const diet of diets) {
+            if (recipe[`${diet}`] === false) return false
             
-            
+        }
+    }
+    return true;
+}
+
     
 
 function createsearchList(recipeList, resultsAmount){
@@ -63,6 +72,7 @@ function createsearchList(recipeList, resultsAmount){
     //if end of recipe list, exit function
     for(let i = 0; i < resultsAmount; i ++){
         if(!recipeList[i]) return
+        if(doubleCheckDiets(recipeList[i]) === false) continue;
         const recipeContainer = document.createElement('div');
         recipeContainer.classList.add('recipe-container');
         const recipeName = document.createElement('h3');
