@@ -305,6 +305,10 @@ input[type='checkbox']{
     height: 15px;
     width: 15px;
 }
+/*CSS for search using recipeID*/
+.recipe-nutrition-image{
+    width: 250px;
+}
 /*excludes heading in print */
 @media print {
     .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, 

@@ -228,3 +228,47 @@ function runSearch() {
 }
 
 runSearch();
+
+//code for search by recipe ID
+
+function searchByID(){
+    const searchButton = document.querySelector('.id-search-button');
+    searchButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        getRecipeNutrition();
+    })
+}
+
+function getRecipeNutrition(){
+    const recipeID = document.querySelector('.id-search-input')
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'aa46c0285emshc2e3dc0cac56061p159b49jsn22a03f2fdb16',
+            'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+        }
+    };
+    
+    fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeID.value}/nutritionLabel.png?showOptionalNutrients=true&showZeroValues=true&showIngredients=false`, options)
+        .then(response => {
+            //clears document
+            document.querySelector('.recipe-content-container').textContent = '';
+            const recipeNutritionURL = response.url;
+            displayRecipeNutrition(recipeNutritionURL);
+
+        })
+        .catch(err => console.error(err));
+}
+
+function displayRecipeNutrition(recipeNutrition){
+    const pageContent = document.querySelector('.recipe-content-container');
+    const recipeNutritionContainer = document.createElement('div');
+    recipeNutritionContainer.classList.add('recipe-nutrition-container');
+    const recipeNutritionImage = document.createElement('img');
+    recipeNutritionImage.classList.add('recipe-nutrition-image');
+    recipeNutritionImage.src = recipeNutrition;
+    pageContent.append(recipeNutritionContainer);
+    recipeNutritionContainer.append(recipeNutritionImage);
+}
+
+searchByID();
