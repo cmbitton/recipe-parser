@@ -87,7 +87,8 @@ function replaceImage(search, image) {
         .catch(err => console.error(err));
 }
 // run the program
-run.addEventListener('click', () => {
+run.addEventListener('click', (e) => {
+    e.preventDefault();
     const options = {
         method: 'GET',
         headers: {

@@ -290,6 +290,9 @@ button {
     cursor: pointer;
     transform: scale(1.05);
 }
+.recipe-id{
+    margin-bottom: 20px;
+}
 .show-more-recipes{
     color: blue;
     margin-bottom: 25px;
@@ -304,7 +307,8 @@ input[type='checkbox']{
 }
 /*excludes heading in print */
 @media print {
-    .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, .recipe-template, .upload-image, .return-to-search, .edit-button-container, .tools-header, .left-sidebar{
+    .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, 
+    .recipe-template, .upload-image, .return-to-search, .edit-button-container, .tools-header, .left-sidebar, .recipe-id{
       display:none;
     }
 }
