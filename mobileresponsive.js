@@ -4,11 +4,15 @@ function showHideTools(){
     const editButtons = document.querySelector('.edit-button-container');
     const saveRemoveButtons = document.querySelector('.save-remove-buttons');
     const template = document.querySelector('.recipe-template');
+    const searchByID = document.querySelector('.id-search-container');
     showHideButton.addEventListener('click', () => {
         if (showHideButton.textContent === 'Show'){
-            editButtons.style.display = 'block';
-            saveRemoveButtons.style.display = 'block';
+            editButtons.style.display = 'flex';
+            editButtons.style.justifyContent = 'space-between';
+            saveRemoveButtons.style.display = 'flex';
+            saveRemoveButtons.style.justifyContent = 'space-between';
             template.style.display = 'block';
+            searchByID.style.display = 'block'
             toolbox.style.height = 'fit-content';
             showHideButton.textContent = 'Hide';
         }
@@ -17,6 +21,7 @@ function showHideTools(){
             saveRemoveButtons.removeAttribute('style');
             template.removeAttribute('style');
             toolbox.removeAttribute('style');
+            searchByID.removeAttribute('style');
             showHideButton.textContent = 'Show';
         }
     })

@@ -231,17 +231,19 @@ runSearch();
 
 //code for search by recipe ID
 
-function searchByID(){
+function searchByID() {
     const searchButton = document.querySelector('.id-search-button');
     searchButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const pageContent = document.querySelector('.recipe-content-container');
-        pageContent.textContent = '';
-        const recipeIDInfoContainer = document.createElement('div');
-        recipeIDInfoContainer.classList.add('recipe-id-info-container');
-        pageContent.append(recipeIDInfoContainer);
-        getRecipeNutrition();
-        getRecipeTasteProfile();
+        if (document.querySelector('.id-search-input').value && document.querySelector('.id-search-input').value > 0) {
+            const pageContent = document.querySelector('.recipe-content-container');
+            pageContent.textContent = '';
+            const recipeIDInfoContainer = document.createElement('div');
+            recipeIDInfoContainer.classList.add('recipe-id-info-container');
+            pageContent.append(recipeIDInfoContainer);
+            getRecipeNutrition();
+            getRecipeTasteProfile();
+        }
     })
 }
 

@@ -64,6 +64,7 @@ body, html{
     padding: 20px;
     background-color: #004E89;
     border-radius: 15px;
+    width: 350px;
 }
 .tools-header, .search-settings-heading{
     text-align: center;
@@ -132,14 +133,19 @@ label {
     display: flex;
     column-gap: 10px;
 }
-.save-recipe, .remove-button, .edit-doc, .finish-editing{
-    width: 150px;
+.save-recipe, .remove-button, .edit-doc, .finish-editing, .id-search-button{
     padding: 12px;
     margin-bottom: 15px;
     border-radius: 25px;
     border: none;
 }
-.save-recipe, .edit-doc{
+.id-search-button{
+    width: 125px;
+}
+.edit-doc, .save-recipe{
+    width: 100%;
+}
+.save-recipe, .edit-doc, .id-search-button{
     background-color: #21a12a;
     color: white;
     filter: drop-shadow(0px 0px 5px #115315);
@@ -148,6 +154,7 @@ label {
     background-color: #a12121;
     color: white;
     filter: drop-shadow(0px 0px 5px #531111);
+    width: 100%;
 }
 .recipe-template{
     width: 100%;
@@ -309,6 +316,24 @@ input[type='checkbox']{
 .recipe-nutrition-image{
     width: 250px;
 }
+.id-search-container{
+    text-align: center;
+}
+.id-search-input{
+    width: 167px;
+    margin-right: 10px;
+}
+/* Chrome, Safari, Edge, Opera hide arrow for number input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .recipe-taste-container{
     width: 250px;
     display: flex;
@@ -398,7 +423,7 @@ label[for='bitterness'], label[for='fattiness'], label[for='saltiness'], label[f
             .recipe-input-url{
                 width: 90%;
             }
-            .run, .save-pdf, .edit-doc, .finish-editing {
+            .run, .save-pdf, .edit-doc, .finish-editing{
                 padding: 15px 10px;
             }
             .run{
@@ -492,9 +517,8 @@ label[for='bitterness'], label[for='fattiness'], label[for='saltiness'], label[f
         }
         .save-remove-container{
             height: 75px;
-            width: 100%;
         }
-        .edit-button-container, .save-remove-buttons, .recipe-template, .search-settings-content{
+        .edit-button-container, .save-remove-buttons, .recipe-template, .search-settings-content, .id-search-container{
             display: none;
         }
         .expand{
