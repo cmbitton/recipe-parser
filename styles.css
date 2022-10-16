@@ -322,6 +322,7 @@ input[type='checkbox']{
 .id-search-input{
     width: 167px;
     margin-right: 10px;
+    font-size: 16px;
 }
 /* Chrome, Safari, Edge, Opera hide arrow for number input */
 input::-webkit-outer-spin-button,
