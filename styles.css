@@ -309,6 +309,30 @@ input[type='checkbox']{
 .recipe-nutrition-image{
     width: 250px;
 }
+.recipe-taste-container{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+.taste-heading{
+    margin: 0px;
+}
+#bitterness, #fattiness, #saltiness, #savoriness, #sourness, #sweetness{
+    height: 20px;
+    background-color: #004E89;
+}
+label[for='bitterness'], label[for='fattiness'], label[for='saltiness'], label[for='savoriness'], label[for='sourness'], label[for='sweetness']{
+    color: black;
+}
+.bitterness-bar, .fattiness-bar, .saltiness-bar, .savoriness-bar, .sourness-bar, .sweetness-bar{
+    background-color: lightgray;
+    border: thin solid black;
+}
+.recipe-id-info-container{
+    display: flex;
+    column-gap: 20px;
+}
 /*excludes heading in print */
 @media print {
     .input-container, .save-recipe, .remove-button, .nav-container, .recipes-list, .right-container-recipes, 

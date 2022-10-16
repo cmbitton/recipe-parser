@@ -235,12 +235,18 @@ function searchByID(){
     const searchButton = document.querySelector('.id-search-button');
     searchButton.addEventListener('click', (e) => {
         e.preventDefault();
+        const pageContent = document.querySelector('.recipe-content-container');
+        pageContent.textContent = '';
+        const recipeIDInfoContainer = document.createElement('div');
+        recipeIDInfoContainer.classList.add('recipe-id-info-container');
+        pageContent.append(recipeIDInfoContainer);
         getRecipeNutrition();
+        getRecipeTasteProfile();
     })
 }
 
 function getRecipeNutrition(){
-    const recipeID = document.querySelector('.id-search-input')
+    const recipeID = document.querySelector('.id-search-input');
     const options = {
         method: 'GET',
         headers: {
@@ -251,17 +257,13 @@ function getRecipeNutrition(){
     
     fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeID.value}/nutritionLabel.png?showOptionalNutrients=true&showZeroValues=true&showIngredients=false`, options)
         .then(response => {
-            //clears document
-            document.querySelector('.recipe-content-container').textContent = '';
-            const recipeNutritionURL = response.url;
-            displayRecipeNutrition(recipeNutritionURL);
-
+            displayRecipeNutrition(response.url);
         })
         .catch(err => console.error(err));
 }
 
 function displayRecipeNutrition(recipeNutrition){
-    const pageContent = document.querySelector('.recipe-content-container');
+    const pageContent = document.querySelector('.recipe-id-info-container');
     const recipeNutritionContainer = document.createElement('div');
     recipeNutritionContainer.classList.add('recipe-nutrition-container');
     const recipeNutritionImage = document.createElement('img');
@@ -270,5 +272,123 @@ function displayRecipeNutrition(recipeNutrition){
     pageContent.append(recipeNutritionContainer);
     recipeNutritionContainer.append(recipeNutritionImage);
 }
+function displayTasteProfile(recipeTaste){
+    console.log(recipeTaste);
+    const pageContent = document.querySelector('.recipe-id-info-container');
+    const recipeTasteContainer = document.createElement('div');
+    const tasteHeading = document.createElement('h2');
+    tasteHeading.classList.add('taste-heading');
+    tasteHeading.textContent = 'Taste Profile:';
+    recipeTasteContainer.append(tasteHeading);
+    recipeTasteContainer.classList.add('recipe-taste-container');
+    //bitterness
+    const bitternessContainer = document.createElement('div');
+    bitternessContainer.classList.add('bitterness-container');
+    const bitternessBar = document.createElement('div');
+    bitternessBar.classList.add('bitterness-bar')
+    const bitterness = document.createElement('div');
+    bitterness.id = 'bitterness';
+    bitterness.style.width = `${recipeTaste.bitterness}%`;
+    const labelBitterness = document.createElement('label');
+    labelBitterness.setAttribute('for', 'bitterness');
+    labelBitterness.textContent = 'Bitterness: ';
+    bitternessContainer.append(labelBitterness);
+    bitternessBar.append(bitterness)
+    bitternessContainer.append(bitternessBar);
+    recipeTasteContainer.append(bitternessContainer);
+    //fattiness
+    const fattinessContainer = document.createElement('div');
+    fattinessContainer.classList.add('fattiness-container');
+    const fattinessBar = document.createElement('div');
+    fattinessBar.classList.add('fattiness-bar')
+    const fattiness = document.createElement('div');
+    fattiness.id = 'fattiness';
+    fattiness.style.width = `${recipeTaste.fattiness}%`;
+    const labelFattiness = document.createElement('label');
+    labelFattiness.setAttribute('for', 'fattiness');
+    labelFattiness.textContent = 'Fattiness: ';
+    fattinessContainer.append(labelFattiness);
+    fattinessBar.append(fattiness)
+    fattinessContainer.append(fattinessBar);
+    recipeTasteContainer.append(fattinessContainer);
+    //saltiness
+    const saltinessContainer = document.createElement('div');
+    saltinessContainer.classList.add('saltiness-container');
+    const saltinessBar = document.createElement('div');
+    saltinessBar.classList.add('saltiness-bar')
+    const saltiness = document.createElement('div');
+    saltiness.id = 'saltiness';
+    saltiness.style.width = `${recipeTaste.saltiness}%`;
+    const labelSaltiness = document.createElement('label');
+    labelSaltiness.setAttribute('for', 'saltiness');
+    labelSaltiness.textContent = 'Saltiness: ';
+    saltinessContainer.append(labelSaltiness);
+    saltinessBar.append(saltiness)
+    saltinessContainer.append(saltinessBar);
+    recipeTasteContainer.append(saltinessContainer);
+    //savoriness
+    const savorinessContainer = document.createElement('div');
+    savorinessContainer.classList.add('savoriness-container');
+    const savorinessBar = document.createElement('div');
+    savorinessBar.classList.add('savoriness-bar')
+    const savoriness = document.createElement('div');
+    savoriness.id = 'savoriness';
+    savoriness.style.width = `${recipeTaste.savoriness}%`;
+    const labelSavoriness = document.createElement('label');
+    labelSavoriness.setAttribute('for', 'savoriness');
+    labelSavoriness.textContent = 'Savoriness: ';
+    savorinessContainer.append(labelSavoriness);
+    savorinessBar.append(savoriness)
+    savorinessContainer.append(savorinessBar);
+    recipeTasteContainer.append(savorinessContainer);
+    //sourness
+    const sournessContainer = document.createElement('div');
+    sournessContainer.classList.add('sourness-container');
+    const sournessBar = document.createElement('div');
+    sournessBar.classList.add('sourness-bar')
+    const sourness = document.createElement('div');
+    sourness.id = 'sourness';
+    sourness.style.width = `${recipeTaste.sourness}%`;
+    const labelSourness = document.createElement('label');
+    labelSourness.setAttribute('for', 'sourness');
+    labelSourness.textContent = 'Sourness: ';
+    sournessContainer.append(labelSourness);
+    sournessBar.append(sourness)
+    sournessContainer.append(sournessBar);
+    recipeTasteContainer.append(sournessContainer);
+    //sweetness
+    const sweetnessContainer = document.createElement('div');
+    sweetnessContainer.classList.add('sweetness-container');
+    const sweetnessBar = document.createElement('div');
+    sweetnessBar.classList.add('sweetness-bar')
+    const sweetness = document.createElement('div');
+    sweetness.id = 'sweetness';
+    sweetness.style.width = `${recipeTaste.sweetness}%`;
+    const labelSweetness = document.createElement('label');
+    labelSweetness.setAttribute('for', 'sweetness');
+    labelSweetness.textContent = 'Sweetness: ';
+    sweetnessContainer.append(labelSweetness);
+    sweetnessBar.append(sweetness)
+    sweetnessContainer.append(sweetnessBar);
+    recipeTasteContainer.append(sweetnessContainer);
+    pageContent.append(recipeTasteContainer);
+}
 
+function getRecipeTasteProfile(){
+    const recipeID = document.querySelector('.id-search-input');
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'aa46c0285emshc2e3dc0cac56061p159b49jsn22a03f2fdb16',
+            'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+        }
+    };
+    
+    fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeID.value}/tasteWidget.json?normalize=true`, options)
+        .then(response => response.json())
+        .then(response => {
+            displayTasteProfile(response);
+        })
+        .catch(err => console.error(err));
+}
 searchByID();
