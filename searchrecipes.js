@@ -272,6 +272,16 @@ function displayRecipeNutrition(recipeNutrition){
     pageContent.append(recipeNutritionContainer);
     recipeNutritionContainer.append(recipeNutritionImage);
 }
+
+function createTasteBarColor(tasteValue){
+    let rgb = '';
+    if(tasteValue <= 50){
+        return rgb = `rgb(${255}, ${tasteValue * 5.1}, ${0})`;
+    }
+    else{
+        return rgb = `rgb(${255 - ((tasteValue - 50) * 5.1)}, ${255}, ${0})`;
+    }
+}
 function displayTasteProfile(recipeTaste){
     console.log(recipeTaste);
     const pageContent = document.querySelector('.recipe-id-info-container');
@@ -287,6 +297,7 @@ function displayTasteProfile(recipeTaste){
     const bitternessBar = document.createElement('div');
     bitternessBar.classList.add('bitterness-bar')
     const bitterness = document.createElement('div');
+    bitterness.style.backgroundColor = createTasteBarColor(recipeTaste.bitterness);
     bitterness.id = 'bitterness';
     bitterness.style.width = `${recipeTaste.bitterness}%`;
     const labelBitterness = document.createElement('label');
@@ -302,6 +313,7 @@ function displayTasteProfile(recipeTaste){
     const fattinessBar = document.createElement('div');
     fattinessBar.classList.add('fattiness-bar')
     const fattiness = document.createElement('div');
+    fattiness.style.backgroundColor = createTasteBarColor(recipeTaste.fattiness);
     fattiness.id = 'fattiness';
     fattiness.style.width = `${recipeTaste.fattiness}%`;
     const labelFattiness = document.createElement('label');
@@ -317,6 +329,7 @@ function displayTasteProfile(recipeTaste){
     const saltinessBar = document.createElement('div');
     saltinessBar.classList.add('saltiness-bar')
     const saltiness = document.createElement('div');
+    saltiness.style.backgroundColor = createTasteBarColor(recipeTaste.saltiness);
     saltiness.id = 'saltiness';
     saltiness.style.width = `${recipeTaste.saltiness}%`;
     const labelSaltiness = document.createElement('label');
@@ -332,6 +345,7 @@ function displayTasteProfile(recipeTaste){
     const savorinessBar = document.createElement('div');
     savorinessBar.classList.add('savoriness-bar')
     const savoriness = document.createElement('div');
+    savoriness.style.backgroundColor = createTasteBarColor(recipeTaste.savoriness);
     savoriness.id = 'savoriness';
     savoriness.style.width = `${recipeTaste.savoriness}%`;
     const labelSavoriness = document.createElement('label');
@@ -347,6 +361,7 @@ function displayTasteProfile(recipeTaste){
     const sournessBar = document.createElement('div');
     sournessBar.classList.add('sourness-bar')
     const sourness = document.createElement('div');
+    sourness.style.backgroundColor = createTasteBarColor(recipeTaste.sourness);
     sourness.id = 'sourness';
     sourness.style.width = `${recipeTaste.sourness}%`;
     const labelSourness = document.createElement('label');
@@ -362,6 +377,7 @@ function displayTasteProfile(recipeTaste){
     const sweetnessBar = document.createElement('div');
     sweetnessBar.classList.add('sweetness-bar')
     const sweetness = document.createElement('div');
+    sweetness.style.backgroundColor = createTasteBarColor(recipeTaste.sweetness);
     sweetness.id = 'sweetness';
     sweetness.style.width = `${recipeTaste.sweetness}%`;
     const labelSweetness = document.createElement('label');
