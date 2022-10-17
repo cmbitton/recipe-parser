@@ -258,8 +258,12 @@ function getRecipeNutrition(){
     };
     
     fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeID.value}/nutritionLabel.png?showOptionalNutrients=true&showZeroValues=true&showIngredients=false`, options)
-        .then(response => {
-            displayRecipeNutrition(response.url);
+        .then(response => response.blob())
+        .then(imageBlob => {
+            const imageObjectURL = URL.createObjectURL(imageBlob);
+            console.log(imageObjectURL);
+            displayRecipeNutrition(imageObjectURL);
+        
         })
         .catch(err => console.error(err));
 }
