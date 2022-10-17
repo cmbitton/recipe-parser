@@ -98,12 +98,17 @@ run.addEventListener('click', (e) => {
     };
     const input = document.querySelector('.recipe-input-url');
     buildRecipePageContent();
-
     const title = document.querySelector('.title');
     const recipeImage = document.querySelector('.recipe-image');
     const readyIn = document.querySelector('.ready-in');
     const servings = document.querySelector('.servings');
     const infoMessage = document.querySelector('.ready-in-servings');
+    //adds loading spinner
+    const contentContainer = document.querySelector('.recipe-content-container');
+    const loadingSpinner = document.createElement('div');
+    loadingSpinner.classList.add('lds-dual-ring');
+    loadingSpinner.style.display = 'inline-block';
+    contentContainer.append(loadingSpinner);
     if (input.value !== '' && input.value.includes('http')) {
         fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?url=${input.value}`, options)
             .then(response => response.json())
@@ -144,6 +149,9 @@ run.addEventListener('click', (e) => {
                 //moved function calls here so user can only edit/save recipes once one is loaded
                 editDocument();
                 saveRecipe();
+                //removes loading spinner
+                const loadingSpinner = document.querySelector('.lds-dual-ring');
+                loadingSpinner.removeAttribute('style');
 
             })
             .catch(() => {

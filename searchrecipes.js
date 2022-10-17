@@ -240,6 +240,11 @@ function searchByID() {
             pageContent.textContent = '';
             const recipeIDInfoContainer = document.createElement('div');
             recipeIDInfoContainer.classList.add('recipe-id-info-container');
+            //displays loading spinner
+            const loadingSpinner = document.createElement('div');
+            loadingSpinner.classList.add('lds-dual-ring');
+            loadingSpinner.style.display = 'inline-block';
+            recipeIDInfoContainer.append(loadingSpinner);
             pageContent.append(recipeIDInfoContainer);
             getRecipeNutrition();
             getRecipeTasteProfile();
@@ -277,6 +282,9 @@ function displayRecipeNutrition(recipeNutrition){
     recipeNutritionImage.src = recipeNutrition;
     pageContent.append(recipeNutritionContainer);
     recipeNutritionContainer.append(recipeNutritionImage);
+    //hides loading spinner
+    const loadingSpinner = document.querySelector('.lds-dual-ring');
+    loadingSpinner.removeAttribute('style');
 }
 
 function createTasteBarColor(tasteValue){
