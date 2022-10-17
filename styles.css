@@ -388,7 +388,7 @@ label[for='bitterness'], label[for='fattiness'], label[for='saltiness'], label[f
             }
             .right-container-recipes{
                 flex-basis: 75px;
-                height: 200px;
+                height: fit-content;
                 order: 2;
                 width: 710px;
                 margin-bottom: 10px;
@@ -507,6 +507,10 @@ label[for='bitterness'], label[for='fattiness'], label[for='saltiness'], label[f
         }
         .rank-by-container{
             width: 150px;
+        }
+        .recipe-id-info-container{
+            flex-direction: column;
+            margin-top: 15px;
         }
         .show-hide-toggle-tools, .show-hide-toggle-settings{
             display: inline;
