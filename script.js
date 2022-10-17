@@ -108,7 +108,7 @@ run.addEventListener('click', (e) => {
     const loadingSpinner = document.createElement('div');
     loadingSpinner.classList.add('lds-dual-ring');
     loadingSpinner.style.display = 'inline-block';
-    contentContainer.append(loadingSpinner);
+    contentContainer.insertBefore(loadingSpinner, recipeImage);
     if (input.value !== '' && input.value.includes('http')) {
         fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?url=${input.value}`, options)
             .then(response => response.json())
