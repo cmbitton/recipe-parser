@@ -143,6 +143,10 @@ function displayRecipeSearchListInfo(recipe){
     switch (searchRanking) {
         case 'healthiness':
             return `Health Score: ${recipe.healthScore}`;
+        case 'price':
+            return `Price: $${(recipe.pricePerServing / 100).toFixed(2)} per serving`;
+        case 'time':
+            return `Ready In ${recipe.readyInMinutes} Minutes`;
     }
 }
 
