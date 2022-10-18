@@ -308,6 +308,7 @@ button {
     align-items: center;
     transition: all 100ms ease-in-out;
 }
+
 .recipe-container:hover{
     filter: drop-shadow(0 0 5px gray);
     border: none;
@@ -391,6 +392,9 @@ label[for='bitterness'], label[for='fattiness'], label[for='saltiness'], label[f
     .recipe-template, .upload-image, .return-to-search, .edit-button-container, .tools-header, .left-sidebar, .recipe-id{
       display:none;
     }
+    /*color printing*/
+    body {-webkit-print-color-adjust: exact;}
+
 }
 
 @media screen {
@@ -588,6 +592,14 @@ label[for='bitterness'], label[for='fattiness'], label[for='saltiness'], label[f
         }
         .recipe-search-image{
             width: 50%;
+        }
+        .recipe-container p {
+            font-size: 14px;
+            margin-bottom: 0px;
+        }
+        .recipe-container h3{
+            font-size: 14px;
+            margin-top: 0px;
         }
     }
 }

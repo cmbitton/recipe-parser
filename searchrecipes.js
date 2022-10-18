@@ -137,6 +137,14 @@ function doubleCheckDiets(recipe) {
     }
     return true;
 }
+function displayRecipeSearchListInfo(recipe){
+    const searchRanking = document.querySelector('#rank-by').value;
+    console.log(searchRanking);
+    switch (searchRanking) {
+        case 'healthiness':
+            return `Health Score: ${recipe.healthScore}`;
+    }
+}
 
 function createsearchList(recipeList, resultsAmount) {
     const listResultsContainer = document.querySelector('.recipe-content-container');
@@ -147,16 +155,22 @@ function createsearchList(recipeList, resultsAmount) {
     //if end of recipe list, exit function
     for (let i = 0; i < resultsAmount; i++) {
         if (!recipeList[i]) return
+        //double check diet requirements for recipes that pass through
         if (doubleCheckDiets(recipeList[i]) === false) continue;
         const recipeContainer = document.createElement('div');
         recipeContainer.classList.add('recipe-container');
         const recipeName = document.createElement('h3');
+        const recipeInfo = document.createElement('p');
+        const recipeTextContainer = document.createElement('div');
         const recipeImage = document.createElement('img');
+        recipeTextContainer.append(recipeName);
+        recipeTextContainer.append(recipeInfo);
         listResultsContainer.append(recipeContainer);
-        recipeContainer.append(recipeName);
+        recipeContainer.append(recipeTextContainer);
         recipeContainer.append(recipeImage);
         recipeName.textContent = recipeList[i].title;
         recipeImage.src = recipeList[i].image;
+        recipeInfo.textContent = displayRecipeSearchListInfo(recipeList[i]);
         recipeImage.classList.add('recipe-search-image');
         recipeContainer.addEventListener('click', () => {
             showSearchedRecipe(recipeList[i]);
