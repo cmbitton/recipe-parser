@@ -1,4 +1,19 @@
-
+/* old method of pulling cals from recipe data
+function pullCaloriesFromRecipe(recipe, num) {
+    let calorieAmount = parseInt(recipe.summary.substr((recipe.summary.toLowerCase().indexOf('calories') - num), num));
+    if (isNaN(calorieAmount)) {
+        const newNum = num - 1;
+        calorieAmount = recipe.summary.substr((recipe.summary.toLowerCase().indexOf('calories') - newNum), newNum);
+        if (isNaN(calorieAmount)) {
+            return pullCaloriesFromRecipe(recipe, newNum);
+        }
+        else {return calorieAmount};
+    }
+    else {
+        return calorieAmount;
+    }
+}
+*/
 /*
 function displaySearchList(){
     const searchList = localStorage.getItem('Search Results');
@@ -24,7 +39,6 @@ function addEventListenerToSearchResults() {
     })
 
 }
-*/
 
 function saveSearchList() {
     const recipe = document.querySelector('.recipe-content-container');
@@ -34,7 +48,7 @@ function saveSearchList() {
 function saveSearchRecipes(recipeList) {
     localStorage.setItem('Search Recipes', JSON.stringify(recipeList));
 }
-
+*/
 
 function buildRecipePageContent() {
     const recipeContainer = document.querySelector('.recipe-content-container');
@@ -137,7 +151,8 @@ function doubleCheckDiets(recipe) {
     }
     return true;
 }
-function displayRecipeSearchListInfo(recipe){
+
+function displayRecipeSearchListInfo(recipe) {
     const searchRanking = document.querySelector('#rank-by').value;
     console.log(searchRanking);
     switch (searchRanking) {
@@ -147,6 +162,14 @@ function displayRecipeSearchListInfo(recipe){
             return `Price: $${(recipe.pricePerServing / 100).toFixed(2)} per serving`;
         case 'time':
             return `Ready In ${recipe.readyInMinutes} Minutes`;
+        case 'calories':
+            return `Calories: ${Math.floor(recipe.nutrition.nutrients[0].amount)}`;
+        case 'protein':
+            for (nutrient of recipe.nutrition.nutrients) {
+                if (nutrient.name === 'Protein') {
+                    return `Protein: ${Math.floor(nutrient.amount)}`;
+                }
+            }
     }
 }
 
@@ -188,10 +211,7 @@ function createsearchList(recipeList, resultsAmount) {
         resultsAmount += 5;
         createsearchList(recipeList, resultsAmount);
     })
-    //saves recipe list html to local storage to display when user returns to search
-    saveSearchList();
-    //saves recipe html to local storage for adding event listeners back when user returns to search
-    saveSearchRecipes(recipeList);
+
 }
 
 function getDietsAsUrl() {
@@ -204,6 +224,7 @@ function getDietsAsUrl() {
     }
     return dietList.join();
 }
+
 function getAllergiesAsUrl() {
     const allergyChoices = document.querySelectorAll('.allergies');
     const allergyList = [];
@@ -214,6 +235,20 @@ function getAllergiesAsUrl() {
     }
     return allergyList.join();
 }
+
+//re sorts search results since api search doesnt work
+function sortSearchResults(sortBy, sortDirection, response) {
+    if (sortBy === 'calories') {
+        if(sortDirection === 'desc'){
+        response.results.sort((a, b) => parseFloat(a.nutrition.nutrients[0].amount) - parseFloat(b.nutrition.nutrients[0].amount)).reverse();
+        }
+        else if(sortDirection === 'asc'){
+            response.results.sort((a, b) => parseFloat(b.nutrition.nutrients[0].amount) - parseFloat(a.nutrition.nutrients[0].amount)).reverse();
+        }
+    }
+    return response;
+}
+
 function runSearch() {
     const recipeSearchButton = document.querySelector('.run');
     recipeSearchButton.addEventListener('click', (e) => {
@@ -233,10 +268,17 @@ function runSearch() {
         const diet = encodeURIComponent(getDietsAsUrl());
         const allergies = encodeURIComponent(getAllergiesAsUrl());
         console.log(diet);
-        fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&diet=${diet}&intolerances=${allergies}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&sort=${sortMethod}&sortDirection=${sortDirection}&number=200&limitLicense=false&ranking=2`, options)
+        fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${searchQuery}&diet=${diet}&intolerances=${allergies}&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&sort=${sortMethod}&sortDirection=${sortDirection}&number=100&limitLicense=false&ranking=2`, options)
             .then(response => response.json())
             .then(response => {
+                //reduce storage space of recipe files by deleting unneeded nutrient info
+                for(let recipe of response.results){
+                    delete recipe.nutrition.ingredients;
+                    delete recipe.nutrition.flavonoids;
+                }
                 console.log(response);
+                //sorts recipes since normal sort using api doesnt work
+                response = sortSearchResults(sortMethod, sortDirection, response);
                 localStorage.setItem('apiresponse', JSON.stringify(response));
                 createsearchList(response.results, 10);
             })
