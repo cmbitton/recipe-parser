@@ -167,9 +167,13 @@ function displayRecipeSearchListInfo(recipe) {
         case 'protein':
             for (nutrient of recipe.nutrition.nutrients) {
                 if (nutrient.name === 'Protein') {
-                    return `Protein: ${Math.floor(nutrient.amount)}`;
+                    return `Protein: ${Math.floor(nutrient.amount)}g`;
                 }
             }
+        case 'total-fat':
+            return `Total Fat: ${Math.floor(recipe.nutrition.nutrients[1].amount)}g`;
+        case 'carbohydrates':
+            return `Carbohydrates: ${Math.floor(recipe.nutrition.nutrients[3].amount)}g`;
     }
 }
 
@@ -254,15 +258,23 @@ function sortSearchResults(sortBy, sortDirection, response) {
             response.results.sort((a, b) => parseFloat(b.nutrition.nutrients[0].amount) - parseFloat(a.nutrition.nutrients[0].amount)).reverse();
         }
     }
-    if (sortBy === 'protein') {
-        for (const recipe of response.results) {
-            for (const nutrient of recipe.nutrition.nutrients) {
-                if (nutrient.name === 'Protein') {
-                    const indexOfProtein = recipe.nutrition.nutrients.indexOf(nutrient);
-                    console.log(indexOfProtein)
-                }
+    else if(sortBy === 'total-fat'){
+        if(sortDirection === 'desc'){
+            response.results.sort((a, b) => parseFloat(a.nutrition.nutrients[1].amount) - parseFloat(b.nutrition.nutrients[1].amount)).reverse();
             }
-        }
+            else if(sortDirection === 'asc'){
+                response.results.sort((a, b) => parseFloat(b.nutrition.nutrients[1].amount) - parseFloat(a.nutrition.nutrients[1].amount)).reverse();
+            }
+    }
+    else if(sortBy === 'carbohydrates'){
+        if(sortDirection === 'desc'){
+            response.results.sort((a, b) => parseFloat(a.nutrition.nutrients[3].amount) - parseFloat(b.nutrition.nutrients[3].amount)).reverse();
+            }
+            else if(sortDirection === 'asc'){
+                response.results.sort((a, b) => parseFloat(b.nutrition.nutrients[3].amount) - parseFloat(a.nutrition.nutrients[3].amount)).reverse();
+            }
+    }
+    else if (sortBy === 'protein') {
         if (sortDirection === 'desc') {
             response.results.sort((a, b) => parseFloat(a.nutrition.nutrients[getNutrientLocation(a, sortBy)].amount) - parseFloat(b.nutrition.nutrients[getNutrientLocation(b, sortBy)].amount)).reverse();
         }
