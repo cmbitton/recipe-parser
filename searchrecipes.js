@@ -235,7 +235,15 @@ function getAllergiesAsUrl() {
     }
     return allergyList.join();
 }
-
+//get location of nutrient for search using rankby method
+function getNutrientLocation(recipe, nutrientName){
+    for (const nutrient of recipe.nutrition.nutrients) {
+        if (nutrient.name.toLowerCase() === nutrientName.toLowerCase()) {
+            const indexOfNutrient = recipe.nutrition.nutrients.indexOf(nutrient);
+            return indexOfNutrient
+        }
+    }
+}
 //re sorts search results since api search doesnt work
 function sortSearchResults(sortBy, sortDirection, response) {
     if (sortBy === 'calories') {
@@ -245,6 +253,23 @@ function sortSearchResults(sortBy, sortDirection, response) {
         else if(sortDirection === 'asc'){
             response.results.sort((a, b) => parseFloat(b.nutrition.nutrients[0].amount) - parseFloat(a.nutrition.nutrients[0].amount)).reverse();
         }
+    }
+    if (sortBy === 'protein') {
+        for (const recipe of response.results) {
+            for (const nutrient of recipe.nutrition.nutrients) {
+                if (nutrient.name === 'Protein') {
+                    const indexOfProtein = recipe.nutrition.nutrients.indexOf(nutrient);
+                    console.log(indexOfProtein)
+                }
+            }
+        }
+        if (sortDirection === 'desc') {
+            response.results.sort((a, b) => parseFloat(a.nutrition.nutrients[getNutrientLocation(a, sortBy)].amount) - parseFloat(b.nutrition.nutrients[getNutrientLocation(b, sortBy)].amount)).reverse();
+        }
+        else if (sortDirection === 'asc') {
+            response.results.sort((a, b) => parseFloat(b.nutrition.nutrients[getNutrientLocation(b, sortBy)].amount) - parseFloat(a.nutrition.nutrients[getNutrientLocation(a, sortBy)].amount)).reverse();
+        }
+
     }
     return response;
 }
